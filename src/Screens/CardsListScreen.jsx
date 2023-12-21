@@ -3,10 +3,14 @@ import FloatingBtn from "../Components/FloatingBtn";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { MdOutlineGppGood } from "react-icons/md";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import TestingFooterCmp from "../Components/TestingFooterCmp";
 const CardsListScreen = () => {
   const [selectedImage, setSelectedImage] = useState(null);
-
+  const [Timer, SetTimer] = useState(false);
+  useEffect(() => {
+    setTimeout(() => SetTimer(true), 1700);
+  }, []);
   const openModal = (image) => {
     setSelectedImage(image);
   };
@@ -15,24 +19,29 @@ const CardsListScreen = () => {
     setSelectedImage(null);
   };
   return (
-    <div className="grid pl-24 bg-gradient-to-br from-gray-900 to-black pt-10 sm:grid-cols-3 gap-x-10 gap-y-16 no-scrollbar">
-      <FloatingBtn />
-      {Object.keys(data).map((id) => (
-        <div key={id} className="rounded-xl p-10">
-          <img
-            src={data[id].image}
-            alt=""
-            onClick={() => openModal(id)}
-            className="w-4/5  bg-white p-2 rounded-2xl cursor-pointer no-scrollbar"
+    <>
+      {!Timer && <TestingFooterCmp />}
+      {Timer && (
+        <div className="grid pl-24 bg-gradient-to-br from-gray-900 to-black pt-10 sm:grid-cols-3 gap-x-10 gap-y-16 no-scrollbar">
+          <FloatingBtn />
+          {Object.keys(data).map((id) => (
+            <div key={id} className="rounded-xl p-10">
+              <img
+                src={data[id].image}
+                alt=""
+                onClick={() => openModal(id)}
+                className="w-4/5  bg-white p-2 rounded-2xl cursor-pointer no-scrollbar"
+              />
+            </div>
+          ))}
+          <SpringModal
+            isOpen={!!selectedImage}
+            setIsOpen={closeModal}
+            image={selectedImage}
           />
         </div>
-      ))}
-      <SpringModal
-        isOpen={!!selectedImage}
-        setIsOpen={closeModal}
-        image={selectedImage}
-      />
-    </div>
+      )}
+    </>
   );
 };
 const SpringModal = ({ isOpen, setIsOpen, image }) => {

@@ -1,8 +1,8 @@
-import LoginCmpForR from "../Components/LoginCmpForR";
 import { useEffect, useState } from "react";
 import LoaderCmp from "../Components/LoaderCmp";
+import ForgetpasCmp from "../Components/ForgetPassCmp";
 
-const LoginScreen = () => {
+const Forgetpassword = () => {
   const [Timer, SetTimer] = useState(false);
 
   useEffect(() => {
@@ -11,10 +11,10 @@ const LoginScreen = () => {
   return (
     <>
       <div className="overflow-auto no-scrollbar">
-        {Timer ? <LoginCmpForR /> : <LoaderCmp />}
+        {Timer ? <ForgetpasCmp /> : <LoaderCmp />}
       </div>
     </>
   );
 };
 
-export default LoginScreen;
+export default Forgetpassword;

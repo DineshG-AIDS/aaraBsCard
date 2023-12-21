@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import UserDisplayCmp from "../Components/UserDisplayCmp";
 import UserInputCmp from "../Components/UserInputCmp";
 import { useState, useEffect } from "react";
-
+import FrameLoader from "../Components/FrameLoader";
 const SingleEditScreen = () => {
   const [userInput, setUserInput] = useState("");
   const { id } = useParams();

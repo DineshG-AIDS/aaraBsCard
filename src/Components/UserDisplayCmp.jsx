@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import SecondLogo from "../assets/11logo.png";
 import ThirLogo from "../assets/logo3.png";
 import LazyLoading from "../Components/LazyLoadingCmp";
+import { motion as m } from "framer-motion";
 
 const UserDisplayCmp = ({ imageData, FileData }) => {
   const {
@@ -120,7 +121,12 @@ const UserDisplayCmp = ({ imageData, FileData }) => {
       <div
         className={`w-96   h-[37rem] bg-gray-800 rounded-b-lg border-t-0 overflow-y-auto no-scrollbar  border-black border-4`}
       >
-        {!Timer && <LazyLoading />}
+        {!Timer && (
+          <m.div >
+            {" "}
+            <LazyLoading />
+          </m.div>
+        )}
 
         {Timer && (
           <div

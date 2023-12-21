@@ -1,4 +1,4 @@
-import LoginCmpForR from "../Components/LoginCmpForR";
+import LoginCmp from "../Components/LoginCmp";
 import { useEffect, useState } from "react";
 import LoaderCmp from "../Components/LoaderCmp";
 
@@ -11,7 +11,7 @@ const LoginScreen = () => {
   return (
     <>
       <div className="overflow-auto no-scrollbar">
-        {Timer ? <LoginCmpForR /> : <LoaderCmp />}
+        {Timer ? <LoginCmp /> : <LoaderCmp />}
       </div>
     </>
   );

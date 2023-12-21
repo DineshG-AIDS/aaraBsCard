@@ -1,9 +1,8 @@
+import { Link } from "react-router-dom";
 import Iage from "../assets/LOGINBG.jpg";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-const LoginCmp = () => {
+const LoginCmpForR = () => {
   const [Hide, Sethide] = useState(false);
-
   return (
     <>
       <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center  overflow-auto no-scrollbar">
@@ -20,7 +19,7 @@ const LoginCmp = () => {
               </h1>
             </div>
             <div className="mt-12 flex flex-col items-center">
-              <h1 className="text-2xl xl:text-3xl font-extrabold">Sign up</h1>
+              <h1 className="text-2xl xl:text-3xl font-extrabold">Sign In</h1>
               <div className="w-full flex-1 mt-8">
                 <div className="flex flex-col items-center">
                   <button className="w-full max-w-xs font-bold shadow-sm rounded-full py-1 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
@@ -51,7 +50,7 @@ const LoginCmp = () => {
                         ></path>
                       </svg>
                     </div>
-                    <span className="ml-4">Sign Up with Google</span>
+                    <span className="ml-4">Sign In with Google</span>
                   </button>
 
                   {/* <button className="w-full max-w-xs font-bold shadow-sm rounded-full py-1 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline mt-5">
@@ -69,7 +68,7 @@ const LoginCmp = () => {
 
                 <div className="my-12 border-b text-center">
                   <div className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
-                    Or sign up with e-mail
+                    Or sign In with e-mail
                   </div>
                 </div>
 
@@ -95,7 +94,7 @@ const LoginCmp = () => {
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
                         stroke="currentColor"
-                        dataSlot="icon"
+                        data-Slot="icon"
                         className="w-6 h-6"
                       >
                         {Hide ? (
@@ -123,6 +122,17 @@ const LoginCmp = () => {
                       </svg>
                     </div>
                   </div>
+                  <div>
+                    <h1 className="text-gray-500 font-semibold text-center mt-2 cursor-default">
+                      or
+                      <Link to="/forgetpassword">
+                        <span className="text-[#16a34a] font-bold underline cursor-pointer">
+                          {" "}
+                          Forgot Password
+                        </span>
+                      </Link>{" "}
+                    </h1>
+                  </div>
 
                   <button className="mt-10 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                     {/* <svg
@@ -136,7 +146,7 @@ const LoginCmp = () => {
                     </svg> */}
                     <span className="ml-3">Sign Up</span>
                   </button>
-                  <p className="mt-6 text-xs text-gray-600 text-center">
+                  {/* <p className="mt-6 text-xs text-gray-600 text-center">
                     I agree to abide by{" "}
                     <a
                       href="#"
@@ -151,36 +161,36 @@ const LoginCmp = () => {
                     >
                       Privacy Policy
                     </a>
-                  </p>
+                  </p> */}
                 </div>
               </div>
             </div>
             <div>
-              <h1 className="text-[#16a34a] font-semibold text-center mt-2 cursor-default">
-                Already have an account?{" "}
-                <Link to="/login">
-                  <span className="text-black font-bold underline cursor-pointer">
+              <h1 className=" text-gray-500 font-semibold text-center mt-2 cursor-default">
+                Don't have an account?{" "}
+                <Link to="/register">
+                  <span className="text-[#16a34a] font-bold underline cursor-pointer">
                     {" "}
-                    Log in
+                    Sign up
                   </span>
                 </Link>{" "}
               </h1>
             </div>
           </div>
-          <div className="flex-1 bg-indigo-100 rounded-3xl text-center hidden lg:flex">
-            <div
+          {/* <div className="flex-1 bg-indigo-100 rounded-3xl text-center hidden lg:flex"> */}
+          {/* <div
               className="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat"
               style={{
                 backgroundImage: "url('../assets/LOGINBG.jpg')",
               }}
             >
               <img src={Iage} className="rounded-2xl" alt="" />
-            </div>
-          </div>
+            </div> */}
+          {/* </div> */}
         </div>
       </div>
     </>
   );
 };
 
-export default LoginCmp;
+export default LoginCmpForR;
