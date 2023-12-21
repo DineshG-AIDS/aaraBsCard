@@ -3,12 +3,27 @@ import LoaderCmp from "../Components/LoaderCmp";
 import { useEffect, useState } from "react";
 import { motion as m } from "framer-motion";
 import Footer from "../Components/Footer";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 const LandingScreen = () => {
   const [Timer, SetTimer] = useState(false);
+  const [Verifying, SetVerifying] = useState(false);
+  // const [Logout, SetLogout] = useState(false);
+  const Navigate = useNavigate();
+  const Logouthandler = () => {
+    if (Cookies.get("user")) {
+      Cookies.remove("user");
+      Navigate("/login");
+    }
+  };
   useEffect(() => {
     setTimeout(() => SetTimer(true), 1000);
+    if (Cookies.get("user")) {
+      SetVerifying(true);
+    }
   }, []);
+  // console.log(Logout);
   return (
     <>
       <div className="bg-gradient-to-br from-gray-900 to-black overflow-y-hidden no-scrollbar">
@@ -25,13 +40,26 @@ const LandingScreen = () => {
               <h1 className="text-3xl  text-green-600 text-center font-extrabold">
                 AARA
               </h1>
-              <Link to="/login">
-                <div className="bg-[#16a34a] rounded-2xl  ml-4 mb-4 p-1 text-sm  text-white font-bold  hover:-translate-y-1 ">
-                  <h1 className=" cursor-pointer text-xl font-bold px-6 py-1 text-white ">
-                    Login
-                  </h1>
-                </div>
-              </Link>
+              {Verifying ? (
+                <>
+                  <div
+                    onClick={Logouthandler}
+                    className=" bg-[#16a34a] rounded-2xl  ml-4 mb-4 p-1 text-sm  text-white font-bold  hover:-translate-y-1 "
+                  >
+                    <h1 className=" cursor-pointer text-xl font-bold px-6 py-1 text-white ">
+                      Logout
+                    </h1>
+                  </div>
+                </>
+              ) : (
+                <Link to="/login">
+                  <div className="bg-[#16a34a] rounded-2xl  ml-4 mb-4 p-1 text-sm  text-white font-bold  hover:-translate-y-1 ">
+                    <h1 className=" cursor-pointer text-xl font-bold px-6 py-1 text-white ">
+                      Login
+                    </h1>
+                  </div>
+                </Link>
+              )}
             </div>
 
             <div className="h-32 md:h-26"></div>
@@ -45,17 +73,31 @@ const LandingScreen = () => {
             <div className="pt-4">
               <div className="relative inline-flex  group">
                 <div className="absolute transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#16a34a] via-[#16a34a] to-[#16a34a] rounded-full blur-full group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
-                <Link to="/alltemp">
-                  {" "}
-                  <div
-                    onClick={() => {}}
-                    title="view templates"
-                    className="relative inline-flex items-center justify-center p-2 px-6 text-lg font-bold text-black transition-all duration-200 bg-white font-pj rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
-                    role="button"
-                  >
-                    Get Started
-                  </div>
-                </Link>
+                {Verifying ? (
+                  <Link to="/alltemp">
+                    {" "}
+                    <div
+                      onClick={() => {}}
+                      title="view templates"
+                      className="relative inline-flex items-center justify-center p-2 px-6 text-lg font-bold text-black transition-all duration-200 bg-white font-pj rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+                      role="button"
+                    >
+                      Browse Templates
+                    </div>
+                  </Link>
+                ) : (
+                  <Link to="/register">
+                    {" "}
+                    <div
+                      onClick={() => {}}
+                      title="Register"
+                      className="relative inline-flex items-center justify-center p-2 px-6 text-lg font-bold text-black transition-all duration-200 bg-white font-pj rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+                      role="button"
+                    >
+                      Get Started
+                    </div>
+                  </Link>
+                )}
               </div>
             </div>
 

@@ -1,7 +1,8 @@
 import Iage from "../assets/LOGINBG.jpg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import UserData from "../UserData";
+// import UserData from "../UserData";
+
 const LoginCmp = () => {
   const [Hide, Sethide] = useState(true);
   const [Email, SetEmail] = useState("");
@@ -13,11 +14,6 @@ const LoginCmp = () => {
   const SubmitHandler = (e) => {
     e.preventDefault();
     console.log(Data);
-    UserData[Object.keys(UserData).length + 1] = {
-      name: "John", // replace with the actual name if needed
-      email: Email,
-      password: Password,
-    };
 
     // console.log(Data);
   };
@@ -44,6 +40,7 @@ const LoginCmp = () => {
                 AARA
               </h1>
             </div>
+
             <div className="mt-12 flex flex-col items-center">
               <h1 className="text-2xl xl:text-3xl font-extrabold">Sign up</h1>
               <div className="w-full flex-1 mt-8">
