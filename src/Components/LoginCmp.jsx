@@ -1,9 +1,34 @@
 import Iage from "../assets/LOGINBG.jpg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import UserData from "../UserData";
 const LoginCmp = () => {
-  const [Hide, Sethide] = useState(false);
+  const [Hide, Sethide] = useState(true);
+  const [Email, SetEmail] = useState("");
+  const [Password, SetPassword] = useState("");
+  const Data = {
+    Email: Email,
+    Password: Password,
+  };
+  const SubmitHandler = (e) => {
+    e.preventDefault();
+    console.log(Data);
+    UserData[Object.keys(UserData).length + 1] = {
+      name: "John", // replace with the actual name if needed
+      email: Email,
+      password: Password,
+    };
 
+    // console.log(Data);
+  };
+
+  const InputHandler = (i, val) => {
+    if (i === "email") {
+      SetEmail(val);
+    } else if (i === "password") {
+      SetPassword(val);
+    }
+  };
   return (
     <>
       <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center  overflow-auto no-scrollbar">
@@ -74,58 +99,66 @@ const LoginCmp = () => {
                 </div>
 
                 <div className="mx-auto max-w-xs">
-                  <input
-                    className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                    type="email"
-                    placeholder="Email"
-                  />
-                  <div className="flex flex-row items-center bg-gray-100 border rounded-lg border-gray-200 text-sm focus:outline-none mt-5 relative">
+                  <form onSubmit={SubmitHandler}>
                     <input
-                      className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 "
-                      type={Hide ? "password" : "text"}
-                      placeholder="Password"
+                      className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                      type="email"
+                      placeholder="Email"
+                      onChange={(e) => InputHandler("email", e.target.value)}
                     />
-                    <div
-                      onClick={() => Sethide(!Hide)}
-                      className="absolute right-0 top-0 mr-4 mt-4 bg-white cursor-pointer"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        dataSlot="icon"
-                        className="w-6 h-6"
+                    <div className="flex flex-row items-center bg-gray-100 border rounded-lg border-gray-200 text-sm focus:outline-none mt-5 relative">
+                      <input
+                        className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 "
+                        type={Hide ? "password" : "text"}
+                        placeholder="Password"
+                        onChange={(e) =>
+                          InputHandler("password", e.target.value)
+                        }
+                      />
+                      <div
+                        onClick={() => Sethide(!Hide)}
+                        className="absolute right-0 top-0 mr-4 mt-4 bg-white cursor-pointer"
                       >
-                        {Hide ? (
-                          <>
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88"
-                            />
-                          </>
-                        ) : (
-                          <>
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
-                            />
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                            />
-                          </>
-                        )}
-                      </svg>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          data-Slot="icon"
+                          className="w-6 h-6"
+                        >
+                          {Hide ? (
+                            <>
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88"
+                              />
+                            </>
+                          ) : (
+                            <>
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
+                              />
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                              />
+                            </>
+                          )}
+                        </svg>
+                      </div>
                     </div>
-                  </div>
 
-                  <button className="mt-10 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
-                    {/* <svg
+                    <button
+                      type="submit"
+                      className="mt-10 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                    >
+                      {/* <svg
                       className="w-6 h-6 -ml-2"
                       fill="none"
                       stroke="currentColor"
@@ -134,24 +167,25 @@ const LoginCmp = () => {
                       strokeLinejoin="round"
                     >
                     </svg> */}
-                    <span className="ml-3">Sign Up</span>
-                  </button>
-                  <p className="mt-6 text-xs text-gray-600 text-center">
-                    I agree to abide by{" "}
-                    <a
-                      href="#"
-                      className="border-b border-gray-500 border-dotted"
-                    >
-                      Terms of Service
-                    </a>{" "}
-                    and its
-                    <a
-                      href="#"
-                      className="border-b pl-1 border-gray-500 border-dotted"
-                    >
-                      Privacy Policy
-                    </a>
-                  </p>
+                      <span className="ml-3">Sign Up</span>
+                    </button>
+                    <p className="mt-6 text-xs text-gray-600 text-center">
+                      I agree to abide by{" "}
+                      <a
+                        href="#"
+                        className="border-b border-gray-500 border-dotted"
+                      >
+                        Terms of Service
+                      </a>{" "}
+                      and its
+                      <a
+                        href="#"
+                        className="border-b pl-1 border-gray-500 border-dotted"
+                      >
+                        Privacy Policy
+                      </a>
+                    </p>
+                  </form>
                 </div>
               </div>
             </div>
