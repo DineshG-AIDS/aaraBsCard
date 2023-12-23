@@ -38,9 +38,11 @@ const LoginCmpForR = () => {
   //   }
   // );
   useEffect(() => {
-    Axois.get("https://business-app-d64r.onrender.com/swagger-ui.html")
+    Axois.get(
+      "https://business-app-d64r.onrender.com:443/api/v0/template/getAll"
+    )
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -152,7 +154,6 @@ const LoginCmpForR = () => {
                             viewBox="0 0 24 24"
                             strokeWidth={1.5}
                             stroke="currentColor"
-                            data-Slot="icon"
                             className="w-6 h-6"
                           >
                             {Hide ? (

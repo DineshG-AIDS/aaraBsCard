@@ -4,19 +4,20 @@ import { useEffect, useState } from "react";
 import { motion as m } from "framer-motion";
 import Footer from "../Components/Footer";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import NavBar from "../Components/NavBar";
 
 const LandingScreen = () => {
   const [Timer, SetTimer] = useState(false);
   const [Verifying, SetVerifying] = useState(false);
   // const [Logout, SetLogout] = useState(false);
-  const Navigate = useNavigate();
-  const Logouthandler = () => {
-    if (Cookies.get("user")) {
-      Cookies.remove("user");
-      Navigate("/login");
-    }
-  };
+  // const Navigate = useNavigate();
+  // const Logouthandler = () => {
+  //   if (Cookies.get("user")) {
+  //     Cookies.remove("user");
+  //     Navigate("/login");
+  //   }
+  // };
   useEffect(() => {
     setTimeout(() => SetTimer(true), 1000);
     if (Cookies.get("user")) {
@@ -36,7 +37,8 @@ const LandingScreen = () => {
             transition={{ duration: 0.75, ease: "easeOut" }}
             className=" text-gray-300 container mx-auto p-8 overflow-hidden md:rounded-lg md:p-10 lg:p-12"
           >
-            <div className="flex justify-between">
+            <NavBar />
+            {/* <div className="flex justify-between">
               <h1 className="text-3xl  text-green-600 text-center font-extrabold">
                 AARA
               </h1>
@@ -60,7 +62,7 @@ const LandingScreen = () => {
                   </div>
                 </Link>
               )}
-            </div>
+            </div> */}
 
             <div className="h-32 md:h-26"></div>
 

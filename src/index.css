@@ -10,3 +10,7 @@
   font-family: custom2;
   src: url("./assets/tt.ttf");
 }
+@font-face {
+  font-family: custom3;
+  src: url("./assets/Outfit-Medium.ttf");
+}

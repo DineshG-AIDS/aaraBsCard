@@ -14,8 +14,17 @@ export default {
       fontFamily: {
         custom: ["custom1", "sans"],
         custom1: ["custom2", "sans"],
+        custom2: ["custom3", "sans"],
       },
     },
+    // screens: {
+    //   xs: "480px",
+    //   sm: "768px",
+    //   md: "1060px",
+    //   xxs: "375px",
+    //   spx: "320px",
+    //   spx1: "318px",
+    // },
   },
   plugins: [
     function({ addUtilities }) {

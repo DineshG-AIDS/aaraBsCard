@@ -6,6 +6,7 @@ import RegisterScreen from "./Screens/RegisterScreen";
 import LandingScreen from "./Screens/LandingScreen";
 import LoginScreen from "./Screens/LoginScreen";
 import Forgetpassword from "./Screens/FogetScreen";
+import UserProfileScreen from "./Screens/UserProfileScreen";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/register" exact element={<RegisterScreen />} />
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/forgetpassword" element={<Forgetpassword />} />
+        <Route path="/profile" element={<UserProfileScreen />} />
       </Routes>
     </BrowserRouter>
   );
