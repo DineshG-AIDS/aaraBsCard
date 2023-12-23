@@ -18,11 +18,14 @@ const LandingScreen = () => {
   //     Navigate("/login");
   //   }
   // };
+  let Token = Cookies.get("user");
+
   useEffect(() => {
     setTimeout(() => SetTimer(true), 1000);
-    if (Cookies.get("user")) {
+    if (Token) {
       SetVerifying(true);
     }
+    // console.log(Token.valueOf());
   }, []);
   // console.log(Logout);
   return (

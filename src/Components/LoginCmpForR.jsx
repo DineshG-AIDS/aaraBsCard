@@ -15,6 +15,7 @@ const LoginCmpForR = () => {
   const Data = {
     Email: Email,
     Password: Password,
+    IsLogedIn: true,
   };
 
   const SubmitHandler = (e) => {
@@ -24,7 +25,7 @@ const LoginCmpForR = () => {
         const user = UserData[userId];
         if (user.email === Data.Email) {
           SetVerfiying(true);
-          Cookies.set("user", true);
+          Cookies.set("user", Data);
           setTimeout(() => Navigate("/"), 1000);
 
           break; // Exit the loop once a match is found

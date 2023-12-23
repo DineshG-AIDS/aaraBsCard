@@ -1,5 +1,6 @@
 import Modal from "./Modal";
 import { useState } from "react";
+import TabsRender from "./TabCmp";
 
 const ProfileCmp = () => {
   // sm:h-96
@@ -8,6 +9,12 @@ const ProfileCmp = () => {
   const [Location, SetLocation] = useState("");
   const [Description, SetDescription] = useState("");
   const [Name, Setname] = useState("");
+  const [FaceBookUrl, SetFaceBookUrl] = useState("");
+  const [XUrl, SetXUrl] = useState("");
+  const [GithubUrl, SetGithubUrl] = useState("");
+  const [InstaUrl, SetInstaUrl] = useState("");
+  const [IsAdmin, SetIsAdmin] = useState(false);
+
   const SubmitHandler = (e) => {
     if (e) {
       e.preventDefault();
@@ -24,19 +31,63 @@ const ProfileCmp = () => {
       SetDescription(val);
     } else if (i === "name") {
       Setname(val);
+    } else if (i === "fb") {
+      SetFaceBookUrl(val);
+    } else if (i === "tw") {
+      SetXUrl(val);
+    } else if (i === "git") {
+      SetGithubUrl(val);
+    } else if (i === "insta") {
+      SetInstaUrl(val);
     }
   };
   return (
     <>
-      <div className="flex justify-center sm:pt-40 pt-24 sm:p-0 p-3">
+      <div className="flex justify-center sm:pt-20 pt-20 sm:p-0 p-3">
         <div className="bg-white w-full sm:w-1/2 h-fit rounded-xl ">
-          <div className="flex justify-betweens">
+          <div className="flex ">
             <div>
-              {!EditMode && (
-                <h1 className="pl-6 cursor-default font-custom2 capitalize font-semibold text-3xl p-4">
-                  {Name ? Name : "Dinesh G"}
-                </h1>
-              )}
+              <div className="flex flex-row ">
+                {!EditMode && (
+                  <h1 className="pl-6 cursor-default font-custom2 capitalize font-semibold text-3xl p-4">
+                    {Name ? Name : "Dinesh G"}
+                  </h1>
+                )}
+                <div className="mt-4 -ml-2">
+                  {" "}
+                  {/* <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="yellow"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="yellow"
+                    className="w-10 h-10"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z"
+                    />
+                  </svg> */}
+                  {!IsAdmin && (
+                    <img
+                      width="40"
+                      height="40"
+                      src="https://img.icons8.com/color/48/sparkling.png"
+                      alt="sparkling"
+                    />
+                  )}
+                  {IsAdmin && (
+                    <img
+                      width="28"
+                      height="30"
+                      src="https://img.icons8.com/flat-round/64/000000/star--v1.png"
+                      alt="star--v1"
+                      className="mt-1"
+                    />
+                  )}
+                </div>
+              </div>
               {EditMode && (
                 <>
                   <div className="pl-6 p-4">
@@ -199,7 +250,7 @@ const ProfileCmp = () => {
                     className="rounded-tr-2xl bg-white text-gray-900 border-green-500 border-2 font-custom2 rounded-br-2xl pl-3 w-1/2 focus:ring-0.5 focus:outline-none focus:ring-green-400 dark:focus:ring-green-500"
                     placeholder="URL"
                     onChange={(e) => {
-                      InputHandler("loc", e.target.value);
+                      InputHandler("fb", e.target.value);
                     }}
                   />
                 </div>
@@ -207,7 +258,7 @@ const ProfileCmp = () => {
             )}
 
             {!EditMode && (
-              <a href="#">
+              <a href={`${FaceBookUrl ?? "#"}`} target="blank">
                 <svg
                   className="h-6 fill-current text-gray-600 hover:text-green-700"
                   role="img"
@@ -242,14 +293,14 @@ const ProfileCmp = () => {
                     className="rounded-tr-2xl bg-white text-gray-900 border-green-500 border-2 font-custom2 rounded-br-2xl pl-3 w-1/2 focus:ring-0.5 focus:outline-none focus:ring-green-400 dark:focus:ring-green-500"
                     placeholder="URL"
                     onChange={(e) => {
-                      InputHandler("loc", e.target.value);
+                      InputHandler("tw", e.target.value);
                     }}
                   />
                 </div>
               </>
             )}
             {!EditMode && (
-              <a href="#">
+              <a href={`${XUrl ?? "#"}`} target="blank">
                 <svg
                   className="h-6 fill-current text-gray-600 hover:text-green-700"
                   role="img"
@@ -284,7 +335,7 @@ const ProfileCmp = () => {
                     className="rounded-tr-2xl bg-white text-gray-900 border-green-500 border-2 font-custom2 rounded-br-2xl pl-3 w-1/2 focus:ring-0.5 focus:outline-none focus:ring-green-400 dark:focus:ring-green-500"
                     placeholder="URL"
                     onChange={(e) => {
-                      InputHandler("loc", e.target.value);
+                      InputHandler("git", e.target.value);
                     }}
                   />
                 </div>
@@ -292,7 +343,7 @@ const ProfileCmp = () => {
             )}
 
             {!EditMode && (
-              <a href="#">
+              <a href={`${GithubUrl ?? "#"}`} target="blank">
                 <svg
                   className="h-6 fill-current text-gray-600 hover:text-green-700"
                   role="img"
@@ -349,14 +400,14 @@ const ProfileCmp = () => {
                     className="rounded-tr-2xl bg-white text-gray-900 border-green-500 border-2 font-custom2 rounded-br-2xl pl-3 w-1/2 focus:ring-0.5 focus:outline-none focus:ring-green-400 dark:focus:ring-green-500"
                     placeholder="URL"
                     onChange={(e) => {
-                      InputHandler("loc", e.target.value);
+                      InputHandler("insta", e.target.value);
                     }}
                   />
                 </div>
               </>
             )}
             {!EditMode && (
-              <a href="#">
+              <a href={`${InstaUrl ?? "#"}`} target="blank">
                 <svg
                   className="h-6 fill-current text-gray-600 hover:text-green-700"
                   role="img"
@@ -402,9 +453,19 @@ const ProfileCmp = () => {
               />
             </svg>
           </div> */}
-          <div className="sm:mb-2 mb-2">
+
+          <div className="sm:mb-2 ">
             <Modal />
           </div>
+          {IsAdmin && (
+            <>
+              {" "}
+              <hr className=" h-0.5 mt-4 mx-6 bg-[#16a34a] border-0 rounded-3xl "></hr>
+              <div className="p-4">
+                <TabsRender />
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>
