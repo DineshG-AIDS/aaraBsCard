@@ -1,36 +1,37 @@
 import data from "../Data";
-
+import SampleImage from "../assets/womenprofes.jpg";
+import UserData from "../UserData";
+import Cookies from "js-cookie";
+import { useEffect } from "react";
 const SingleCardCmp = () => {
-  const {
-    name,
-    top,
-    bg,
-    bottom,
-    ids,
-    logos,
-    contactLogo,
-    sampleLogo,
-  } = data[1];
-  console.log(name);
+  let TokenId = Cookies.get("user");
+  const { designDetails } = UserData[TokenId];
+  const { ids, name, contactDetails, title } = designDetails;
+  const { top, bg, bottom, logos, contactLogo, sampleLogo } = data[1];
+  console.log(contactDetails.phone);
+
+  useEffect(() => {
+    console.log(TokenId);
+  }, []);
   return (
     <>
       {/* <h1 className="text-white">my cards</h1> */}
-      <div className="w-96  bg-gray-800   rounded-t-lg border-black border-4 border-b-0 overflow-auto no-scrollbar">
+      <div className="w-96     rounded-t-lg border-black border-4 border-b-0 overflow-auto no-scrollbar">
         {/* <div className="bg-black rounded-b-lg ">
           <h1 className="text-white font-semibold text-center p-4 cursor-default">
             Live Preview
           </h1>
         </div> */}
         <div className="p-3 flex justify-between ">
-          <input
+          {/* <input
             type="text"
             className="bg-black w-full pr-4 p-4 font-semibold rounded-lg"
             placeholder={`https://aara/bscard/${
               names ? FileData.name : "UserName"
             }`}
             disabled
-          />
-          <div className="pl-2 pt-2 cursor-default">
+          /> */}
+          {/* <div className="pl-2 pt-2 cursor-default">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -45,7 +46,7 @@ const SingleCardCmp = () => {
                 d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
               />
             </svg>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -148,7 +149,7 @@ const SingleCardCmp = () => {
                       <span className="text-black">MR</span>
                     </>
                   )}{" "}
-                  {names ? FileData.name : "Your Name"}
+                  {name ?? "Your Name"}
                 </h1>
                 <h1
                   className={` ${
@@ -159,14 +160,14 @@ const SingleCardCmp = () => {
                       : "text-white text-center"
                   } cursor-default capitalize whitespace-pre-line`}
                 >
-                  {Titles ? FileData.title : "Your Title"}
+                  {title ?? "Your Title"}
                 </h1>
               </div>
             </div>
 
             {ids === 3 ? (
               <>
-                {!Social1 && (
+                {/* {!Social1 && (
                   <>
                     <div
                       className={`flex flex-col mb-2 mt-4 gap-y-2 ${
@@ -223,15 +224,15 @@ const SingleCardCmp = () => {
                       </div>
                     </div>
                   </>
-                )}
-                {Social1 && (
+                )} */}
+                {
                   <>
                     <div
                       className={`flex flex-col  mt-4  gap-y-2 ${
                         ids === 2 ? " pl-10 pt-4" : "pl-20 pt-8"
                       } `}
                     >
-                      {FileData.ContactState[0] && (
+                      {
                         <div className="flex flex-row gap-x-2">
                           <img src={contactLogo[0]} className="w-8" alt="" />
                           <h1
@@ -241,11 +242,11 @@ const SingleCardCmp = () => {
                               ids === 2 ? "text-[#243863]" : "text-white"
                             } font-custom pt-1`}
                           >
-                            {Phone ?? "+xxxxxxxxx"}
+                            {contactDetails.phone ?? "+xxxxxxxxx"}
                           </h1>
                         </div>
-                      )}
-                      {FileData.ContactState[1] && (
+                      }
+                      {
                         <>
                           <div className="flex flex-row gap-x-2">
                             <img src={contactLogo[1]} className="w-8" alt="" />
@@ -256,12 +257,12 @@ const SingleCardCmp = () => {
                                 ids === 2 ? "text-[#243863]" : "text-white"
                               } font-custom pt-1`}
                             >
-                              {Web ?? "www.aara.com"}
+                              {contactDetails.web ?? "www.aara.com"}
                             </h1>
                           </div>
                         </>
-                      )}
-                      {FileData.ContactState[2] && (
+                      }
+                      {
                         <>
                           <div className="flex flex-row gap-x-2">
                             <img src={contactLogo[2]} className="w-8" alt="" />
@@ -272,12 +273,12 @@ const SingleCardCmp = () => {
                                 ids === 2 ? "text-[#243863]" : "text-white"
                               } font-custom pt-1`}
                             >
-                              {Mail ?? "aara@email.com"}
+                              {contactDetails.mail ?? "aara@email.com"}
                             </h1>
                           </div>
                         </>
-                      )}
-                      {FileData.ContactState[3] && (
+                      }
+                      {
                         <>
                           <div className="flex flex-row gap-x-2">
                             <img src={contactLogo[3]} className="w-8" alt="" />
@@ -288,15 +289,16 @@ const SingleCardCmp = () => {
                                 ids === 2 ? "text-[#243863]" : "text-white"
                               } font-custom pt-1`}
                             >
-                              {Locations ?? "onEarth"}
+                              {contactDetails.locations ?? "onEarth"}
                             </h1>
                           </div>
                         </>
-                      )}
+                      }
                     </div>
                   </>
-                )}
-                {!Social && (
+                }
+                {/* !Social && */}
+                {
                   <>
                     <div className="flex flex-row gap-x-10 pl-4 pr-4 pt-2  opacity-80">
                       <div>
@@ -318,8 +320,8 @@ const SingleCardCmp = () => {
                       </div>
                     </div>
                   </>
-                )}
-                {Social && (
+                }
+                {/* {Social && (
                   <>
                     <div className="flex flex-row gap-x-10 pl-4 pr-4 pt-4 ">
                       {FileData.Testing[0] && (
@@ -395,11 +397,12 @@ const SingleCardCmp = () => {
                       )}
                     </div>
                   </>
-                )}
+                )} */}
               </>
             ) : (
               <>
-                {!Social && (
+                {/* !Social && */}
+                {
                   <>
                     <div className="flex flex-row gap-x-10 pl-4 pr-4 pt-2  opacity-80">
                       <div>
@@ -421,85 +424,62 @@ const SingleCardCmp = () => {
                       </div>
                     </div>
                   </>
-                )}
-                {Social && (
+                }
+                {/* Social &&  */}
+                {
                   <>
                     <div className="flex flex-row gap-x-10 pl-4 pr-4 pt-4 ">
-                      {FileData.Testing[0] && (
+                      {
                         <div>
-                          <a
-                            target="_blank"
-                            href={`https://www.instagram.com/${Insta}`}
-                          >
-                            <img
-                              src={logos[0]}
-                              className="w-10 cursor-pointer"
-                              alt=""
-                              rel="noreferrer"
-                            />
-                          </a>
-                        </div>
-                      )}
-                      {FileData.Testing[1] && (
-                        <div>
-                          <a
-                            target="_blank"
-                            href={`https://${FaceBook}`}
+                          <img
+                            src={logos[0]}
+                            className="w-10 cursor-pointer"
+                            alt=""
                             rel="noreferrer"
-                          >
-                            <img
-                              src={logos[2]}
-                              className="w-10 cursor-pointer"
-                              alt=""
-                            />
-                          </a>
+                          />
                         </div>
-                      )}
-                      {FileData.Testing[2] && (
+                      }
+                      {
                         <div>
-                          <a
-                            target="_blank"
-                            href={`https://${X}`}
-                            rel="noreferrer"
-                          >
-                            <img
-                              src={logos[1]}
-                              className="w-10 cursor-pointer"
-                              alt=""
-                            />
-                          </a>
+                          <img
+                            src={logos[2]}
+                            className="w-10 cursor-pointer"
+                            alt=""
+                          />
                         </div>
-                      )}
-                      {FileData.Testing[3] && (
+                      }
+                      {
                         <div>
-                          <a target="_blank" href={`https://${Youtube}`}>
-                            <img
-                              src={logos[3]}
-                              className="w-10 cursor-pointer"
-                              alt=""
-                            />
-                          </a>
+                          <img
+                            src={logos[1]}
+                            className="w-10 cursor-pointer"
+                            alt=""
+                          />
                         </div>
-                      )}
-                      {FileData.Testing[4] && (
+                      }
+                      {
                         <div>
-                          <a
-                            target="_blank"
-                            href={`https://${LinkedIn}`}
-                            rel="noreferrer"
-                          >
-                            <img
-                              src={logos[4]}
-                              className="w-10 cursor-pointer"
-                              alt=""
-                            />
-                          </a>
+                          <img
+                            src={logos[3]}
+                            className="w-10 cursor-pointer"
+                            alt=""
+                          />
                         </div>
-                      )}
+                      }
+                      {
+                        <div>
+                          <img
+                            src={logos[4]}
+                            className="w-10 cursor-pointer"
+                            alt=""
+                          />
+                        </div>
+                      }
                     </div>
                   </>
-                )}
-                {!Social1 && (
+                }
+                {/* !Social1 && */}
+                {
                   <>
                     <div
                       className={`flex flex-col gap-y-2 cursor-default ${
@@ -548,15 +528,16 @@ const SingleCardCmp = () => {
                       </div>
                     </div>
                   </>
-                )}
-                {Social1 && (
+                }
+                {/* Social1 && */}
+                {
                   <>
                     <div
                       className={`flex flex-col gap-y-2 cursor-default ${
                         ids === 2 ? " pl-10 pt-4" : "pl-20 pt-8"
                       } `}
                     >
-                      {FileData.ContactState[0] && (
+                      {
                         <div className="flex flex-row gap-x-2">
                           <img src={contactLogo[0]} className="w-8" alt="" />
                           <h1
@@ -564,13 +545,11 @@ const SingleCardCmp = () => {
                               ids === 2 ? "text-[#243863]" : "text-white"
                             } font-custom pt-1`}
                           >
-                            {FileData.ContactInfo[1]
-                              ? FileData.ContactInfo[1]
-                              : "+xxxxxxxxx"}
+                            {contactDetails.phone ?? "+xxxxxxxxx"}
                           </h1>
                         </div>
-                      )}
-                      {FileData.ContactState[1] && (
+                      }
+                      {
                         <>
                           <div className="flex flex-row gap-x-2">
                             <img src={contactLogo[1]} className="w-8" alt="" />
@@ -579,14 +558,12 @@ const SingleCardCmp = () => {
                                 ids === 2 ? "text-[#243863]" : "text-white"
                               } font-custom pt-1`}
                             >
-                              {FileData.ContactInfo[2]
-                                ? FileData.ContactInfo[2]
-                                : "www.aara.com"}
+                              {contactDetails.web ?? "www.aara.com"}
                             </h1>
                           </div>
                         </>
-                      )}
-                      {FileData.ContactState[2] && (
+                      }
+                      {
                         <>
                           <div className="flex flex-row gap-x-2">
                             <img src={contactLogo[2]} className="w-8" alt="" />
@@ -595,14 +572,12 @@ const SingleCardCmp = () => {
                                 ids === 2 ? "text-[#243863]" : "text-white"
                               } font-custom pt-1`}
                             >
-                              {FileData.ContactInfo[3]
-                                ? FileData.ContactInfo[3]
-                                : "aara@email.com"}
+                              {contactDetails.mail ?? "aara@email.com"}
                             </h1>
                           </div>
                         </>
-                      )}
-                      {FileData.ContactState[3] && (
+                      }
+                      {
                         <>
                           <div className="flex flex-row gap-x-2">
                             <img src={contactLogo[3]} className="w-8" alt="" />
@@ -611,16 +586,14 @@ const SingleCardCmp = () => {
                                 ids === 2 ? "text-[#243863]" : "text-white"
                               } font-custom pt-1`}
                             >
-                              {FileData.ContactInfo[4]
-                                ? FileData.ContactInfo[4]
-                                : "onEarth"}
+                              {contactDetails.locations ?? "onEarth"}
                             </h1>
                           </div>
                         </>
-                      )}
+                      }
                     </div>
                   </>
-                )}
+                }
               </>
             )}
 

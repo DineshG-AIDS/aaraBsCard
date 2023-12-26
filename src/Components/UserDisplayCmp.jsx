@@ -1,9 +1,9 @@
-import Logo from "../assets/10logo-removebg-preview.png";
+// import Logo from "../assets/10logo-removebg-preview.png";
 
 import SampleImage from "../assets/womenprofes.jpg";
 import { useEffect, useState } from "react";
-import SecondLogo from "../assets/11logo.png";
-import ThirLogo from "../assets/logo3.png";
+// import SecondLogo from "../assets/11logo.png";
+// import ThirLogo from "../assets/logo3.png";
 import LazyLoading from "../Components/LazyLoadingCmp";
 import { motion as m } from "framer-motion";
 

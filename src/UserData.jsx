@@ -6,11 +6,47 @@ const UserData = {
       password: "password",
       isAdmin: false,
     },
-    count: 4,
+    count: 3,
+    designDetails: {
+      ids: [1, 2, 3],
+      names: "buddy",
+      title: "Your title from usedata api",
+      links: {
+        insta: "https://www.github.com/buddy",
+        facebook: "https://www.github.com/buddy",
+        X: "https://www.github.com/buddy",
+        youtube: "https://www.github.com/buddy",
+        linkedin: "https://www.github.com/buddy",
+      },
+      contactDetails: {
+        phone: "231231342",
+        web: "www.buddyblog.site",
+        mail: "hello@gamil.com",
+        locations: "cbe",
+      },
+    },
   },
   2: {
     details: { name: "buddy", email: "11", password: "11", isAdmin: false },
     count: 3,
+    designDetails: {
+      ids: [1, 2, 3],
+      names: "buddy",
+      title: "Your title from usedata api",
+      links: {
+        insta: "https://www.github.com/buddy",
+        facebook: "https://www.github.com/buddy",
+        X: "https://www.github.com/buddy",
+        youtube: "https://www.github.com/buddy",
+        linkedin: "https://www.github.com/buddy",
+      },
+      contactDetails: {
+        phone: "231231342",
+        web: "www.buddyblog.site",
+        mail: "hello@gamil.com",
+        locations: "cbe",
+      },
+    },
   },
   3: {
     details: {
@@ -19,9 +55,24 @@ const UserData = {
       password: "11",
       isAdmin: true,
     },
-    count: 5,
+    count: 3,
     designDetails: {
-      ids: 1,
+      ids: [1, 2, 3],
+      names: "buddy",
+      title: "Your title from usedata api",
+      links: {
+        insta: "https://www.github.com/buddy",
+        facebook: "https://www.github.com/buddy",
+        X: "https://www.github.com/buddy",
+        youtube: "https://www.github.com/buddy",
+        linkedin: "https://www.github.com/buddy",
+      },
+      contactDetails: {
+        phone: "231231342",
+        web: "www.buddyblog.site",
+        mail: "hello@gamil.com",
+        locations: "cbe",
+      },
     },
   },
   4: {
@@ -32,6 +83,24 @@ const UserData = {
       isAdmin: true,
     },
     count: 2,
+    designDetails: {
+      ids: [1, 2],
+      names: "buddy",
+      title: "Your title from usedata api",
+      links: {
+        insta: "https://www.github.com/buddy",
+        facebook: "https://www.github.com/buddy",
+        X: "https://www.github.com/buddy",
+        youtube: "https://www.github.com/buddy",
+        linkedin: "https://www.github.com/buddy",
+      },
+      contactDetails: {
+        phone: "231231342",
+        web: "www.buddyblog.site",
+        mail: "hello@gamil.com",
+        locations: "cbe",
+      },
+    },
   },
 };
 
