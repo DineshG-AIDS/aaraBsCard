@@ -17,13 +17,13 @@ const LoginCmpForR = () => {
     Password: Password,
     IsLogedIn: true,
   };
-
+  console.log(UserData[1].details.email);
   const SubmitHandler = (e) => {
     e.preventDefault();
     for (const userId in UserData) {
       if (Object.prototype.hasOwnProperty.call(UserData, userId)) {
         const user = UserData[userId];
-        if (user.email === Data.Email) {
+        if (user.details.email === Data.Email) {
           SetVerfiying(true);
           Cookies.set("user", Data);
           setTimeout(() => Navigate("/"), 1000);

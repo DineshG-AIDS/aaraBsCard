@@ -1,23 +1,27 @@
 const UserData = {
   1: {
-    name: "John",
-    email: "buddy@email.com",
-    password: "password",
+    details: {
+      name: "John",
+      email: "buddy@email.com",
+      password: "password",
+    },
   },
   2: {
-    name: "John",
-    email: "11",
-    password: "11",
+    details: { name: "John", email: "11", password: "11" },
   },
   3: {
-    name: "John",
-    email: "buddy@email.com",
-    password: "11",
+    details: {
+      name: "John",
+      email: "buddy@email.com",
+      password: "11",
+    },
   },
   4: {
-    name: "John",
-    email: "buddy@email.com",
-    password: "password",
+    details: {
+      name: "John",
+      email: "buddy@email.com",
+      password: "password1",
+    },
   },
 };
 

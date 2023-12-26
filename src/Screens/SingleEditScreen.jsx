@@ -24,6 +24,16 @@ const SingleEditScreen = () => {
     setUserInput(value);
   };
   useEffect(() => {
+    const unloadCallback = (event) => {
+      event.preventDefault();
+      event.returnValue = "";
+      return "";
+    };
+
+    window.addEventListener("beforeunload", unloadCallback);
+    return () => window.removeEventListener("beforeunload", unloadCallback);
+  }, []);
+  useEffect(() => {
     // console.log(userInput);
   }, [userInput]);
   return (

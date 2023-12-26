@@ -7,6 +7,7 @@ import LandingScreen from "./Screens/LandingScreen";
 import LoginScreen from "./Screens/LoginScreen";
 import Forgetpassword from "./Screens/FogetScreen";
 import UserProfileScreen from "./Screens/UserProfileScreen";
+import MyCardScreen from "./Screens/MyCardScreen";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/forgetpassword" element={<Forgetpassword />} />
         <Route path="/profile" element={<UserProfileScreen />} />
+        <Route path="/mycards" element={<MyCardScreen />} />
       </Routes>
     </BrowserRouter>
   );

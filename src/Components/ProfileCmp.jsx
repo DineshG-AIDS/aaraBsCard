@@ -1,6 +1,7 @@
 import Modal from "./Modal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TabsRender from "./TabCmp";
+import { Link } from "react-router-dom";
 
 const ProfileCmp = () => {
   // sm:h-96
@@ -14,6 +15,7 @@ const ProfileCmp = () => {
   const [GithubUrl, SetGithubUrl] = useState("");
   const [InstaUrl, SetInstaUrl] = useState("");
   const [IsAdmin, SetIsAdmin] = useState(false);
+  const [IsAdminArrow, SetIsAdminArrow] = useState(false);
 
   const SubmitHandler = (e) => {
     if (e) {
@@ -22,6 +24,9 @@ const ProfileCmp = () => {
     console.log(Job, Location, Description);
   };
 
+  useEffect(() => {
+    SetIsAdmin(false);
+  }, []);
   const InputHandler = (i, val) => {
     if (i === "job") {
       SetJob(val);
@@ -69,7 +74,7 @@ const ProfileCmp = () => {
                       d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z"
                     />
                   </svg> */}
-                  {!IsAdmin && (
+                  {!IsAdmin && !EditMode && (
                     <img
                       width="40"
                       height="40"
@@ -77,7 +82,7 @@ const ProfileCmp = () => {
                       alt="sparkling"
                     />
                   )}
-                  {IsAdmin && (
+                  {IsAdmin && !EditMode && (
                     <img
                       width="28"
                       height="30"
@@ -90,12 +95,26 @@ const ProfileCmp = () => {
               </div>
               {EditMode && (
                 <>
-                  <div className="pl-6 p-4">
+                  <div className="pl-6 p-4 flex flex-row">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="green"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="green"
+                      className="w-10 h-8"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                      />
+                    </svg>
                     <input
                       type="text"
                       onChange={(e) => InputHandler("name", e.target.value)}
                       placeholder="Enter You Name"
-                      className="text-black font-custom2 ml-1 p-1  pl-2 rounded-lg"
+                      className="text-black font-custom2 ml-1 p-1  pl-2 rounded-lg focus:ring-0.5 border-[#16a34a] border-2 focus:outline-none focus:ring-green-400 dark:focus:ring-green-500"
                     />
                   </div>
                 </>
@@ -160,7 +179,7 @@ const ProfileCmp = () => {
                     type="text"
                     onChange={(e) => InputHandler("job", e.target.value)}
                     placeholder="Enter You Role 💼"
-                    className="text-black font-custom2 ml-1 p-1 rounded-lg"
+                    className="text-black font-custom2 ml-1 p-1 rounded-lg focus:ring-0.5 border-[#16a34a] border-2 focus:outline-none focus:ring-green-400 dark:focus:ring-green-500"
                   />
                 </>
               )}
@@ -186,7 +205,7 @@ const ProfileCmp = () => {
                     type="text"
                     onChange={(e) => InputHandler("loc", e.target.value)}
                     placeholder="Enter Your Location 🌍"
-                    className="text-black font-custom2 ml-1 p-1 rounded-lg"
+                    className="text-black font-custom2 ml-1 p-1 rounded-lg focus:ring-0.5 border-[#16a34a] border-2 focus:outline-none focus:ring-green-400 dark:focus:ring-green-500"
                   />
                 </>
               )}
@@ -205,7 +224,7 @@ const ProfileCmp = () => {
                   type="text"
                   onChange={(e) => InputHandler("des", e.target.value)}
                   placeholder="Your Short and Sweet Descriptions"
-                  className="text-black font-custom2 ml-1 p-1 rounded-lg w-1/2"
+                  className="text-black font-custom2 ml-1 p-1 rounded-lg w-1/2 focus:ring-0.5 border-[#16a34a] border-2 focus:outline-none focus:ring-green-400 dark:focus:ring-green-500"
                 />
               </>
             )}
@@ -226,7 +245,7 @@ const ProfileCmp = () => {
             </div>
           </div>
 
-          <div className="pt-8 pb-2 lg:pb-0 w-4/5 gap-y-4 lg:w-full mx-auto flex flex-wrap items-center sm:gap-x-10 gap-x-4 md:gap-x-10  sm:justify-start sm:pl-6 sm:pt-4">
+          <div className="pt-8 pb-2 lg:pb-0 w-4/5 gap-y-4 lg:w-full mx-auto mb-2 flex flex-wrap items-center sm:gap-x-10 gap-x-4 md:gap-x-10  sm:justify-start sm:pl-6 sm:pt-4">
             {EditMode && (
               <>
                 <div className="flex flex-row">
@@ -409,7 +428,7 @@ const ProfileCmp = () => {
             {!EditMode && (
               <a href={`${InstaUrl ?? "#"}`} target="blank">
                 <svg
-                  className="h-6 fill-current text-gray-600 hover:text-green-700"
+                  className="h-6 fill-current text-gray-600 hover:text-green-700 "
                   role="img"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
@@ -454,10 +473,60 @@ const ProfileCmp = () => {
             </svg>
           </div> */}
 
-          <div className="sm:mb-2 ">
+          {/* <div className="sm:mb-2 ">
             <Modal />
-          </div>
-          {IsAdmin && (
+          </div> */}
+
+          {!EditMode && (
+            <div className="flex justify-between">
+              <div className="pt-4 pl-2">
+                <Link to="/mycards">
+                  <div className=" w-28  p-2 px-2 m-2 gap-x-0.5  hover:-translate-y-1 flex flex-row cursor-pointer bg-[#16a34a] rounded-full">
+                    <h1 className="font-custom2   text-white ">My Cards</h1>
+                    <div className="mt-0.5">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="white"
+                        className="w-5 h-5"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              <div className="sm:mb-2 pt-10 ">
+                <Modal />
+              </div>
+            </div>
+          )}
+          {IsAdmin && !EditMode && !IsAdminArrow && (
+            <div className="flex justify-center pt-2 pb-2">
+              <svg
+                onClick={() => SetIsAdminArrow(true)}
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="green"
+                className="w-8 h-8 cursor-pointer hover:translate-y-1"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5"
+                />
+              </svg>
+            </div>
+          )}
+          {IsAdmin && !EditMode && IsAdminArrow && (
             <>
               {" "}
               <hr className=" h-0.5 mt-4 mx-6 bg-[#16a34a] border-0 rounded-3xl "></hr>
@@ -465,6 +534,30 @@ const ProfileCmp = () => {
                 <TabsRender />
               </div>
             </>
+          )}
+          {IsAdmin && !EditMode && IsAdminArrow && (
+            <div className="flex justify-center  pb-1">
+              <svg
+                onClick={() => SetIsAdminArrow(false)}
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="green"
+                className="w-8 h-8 cursor-pointer hover:-translate-y-1"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m4.5 18.75 7.5-7.5 7.5 7.5"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m4.5 12.75 7.5-7.5 7.5 7.5"
+                />
+              </svg>
+            </div>
           )}
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Tabs = ({ color }) => {
+const Tabs = () => {
   const [openTab, setOpenTab] = React.useState(1);
   return (
     <>
@@ -114,7 +114,7 @@ const Tabs = ({ color }) => {
 const TabsRender = () => {
   return (
     <>
-      <Tabs color="emerald" />
+      <Tabs />
     </>
   );
 };

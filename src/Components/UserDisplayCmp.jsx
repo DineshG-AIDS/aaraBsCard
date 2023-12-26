@@ -1,5 +1,5 @@
 import Logo from "../assets/10logo-removebg-preview.png";
-import LogoWhite from "../assets/logorewamped.png";
+// import LogoWhite from "../assets/logorewamped.png";
 import SampleImage from "../assets/womenprofes.jpg";
 import { useEffect, useState } from "react";
 import SecondLogo from "../assets/11logo.png";
@@ -122,7 +122,7 @@ const UserDisplayCmp = ({ imageData, FileData }) => {
         className={`w-96   h-[37rem] bg-gray-800 rounded-b-lg border-t-0 overflow-y-auto no-scrollbar  border-black border-4`}
       >
         {!Timer && (
-          <m.div >
+          <m.div>
             {" "}
             <LazyLoading />
           </m.div>
@@ -209,12 +209,10 @@ const UserDisplayCmp = ({ imageData, FileData }) => {
                 ids === 3 ? "flex justify-start   items-start" : ""
               }  pl-4`}
             >
-              <div className="mt-2 font-semibold  text-white ">
+              <div className="mt-2 font-semibold  ">
                 <h1
                   className={`font-semibold font-custom text-2xl ${
-                    ids === 3
-                      ? "text-[#2c89db] uppercase text-start  -mt-16"
-                      : ""
+                    ids === 3 ? "text-black uppercase text-start  -mt-16" : ""
                   }  cursor-default ${
                     ids === 2
                       ? "text-[#243863] font-custom1 capitalize text-start text-3xl"
