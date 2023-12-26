@@ -2,9 +2,10 @@ import Modal from "./Modal";
 import { useState, useEffect } from "react";
 import TabsRender from "./TabCmp";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import UserData from "../UserData";
 
 const ProfileCmp = () => {
-  // sm:h-96
   const [EditMode, SetEditMode] = useState(false);
   const [Job, SetJob] = useState("");
   const [Location, SetLocation] = useState("");
@@ -23,9 +24,16 @@ const ProfileCmp = () => {
     }
     console.log(Job, Location, Description);
   };
+  const tokenId = Cookies.get("user");
+  const { details } = UserData[tokenId];
 
   useEffect(() => {
-    SetIsAdmin(false);
+    if (details.isAdmin) {
+      SetIsAdmin(true);
+    }
+    console.log(details);
+
+    console.log(tokenId);
   }, []);
   const InputHandler = (i, val) => {
     if (i === "job") {
@@ -55,7 +63,7 @@ const ProfileCmp = () => {
               <div className="flex flex-row ">
                 {!EditMode && (
                   <h1 className="pl-6 cursor-default font-custom2 capitalize font-semibold text-3xl p-4">
-                    {Name ? Name : "Dinesh G"}
+                    {Name ? Name : details.name}
                   </h1>
                 )}
                 <div className="mt-4 -ml-2">

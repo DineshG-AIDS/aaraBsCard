@@ -1,5 +1,5 @@
 import Logo from "../assets/10logo-removebg-preview.png";
-// import LogoWhite from "../assets/logorewamped.png";
+
 import SampleImage from "../assets/womenprofes.jpg";
 import { useEffect, useState } from "react";
 import SecondLogo from "../assets/11logo.png";
@@ -18,22 +18,44 @@ const UserDisplayCmp = ({ imageData, FileData }) => {
     ids,
     logos,
     contactLogo,
+    sampleLogo,
   } = imageData;
   const [names, SetName] = useState(false);
   const [Titles, SetTitle] = useState(false);
+
   const [Social, SetSocial] = useState(false);
+
   const [Insta, SetInsta] = useState("");
   const [FaceBook, SetFaceBook] = useState("");
   const [X, SetX] = useState("");
   const [Youtube, SetYoutube] = useState("");
   const [LinkedIn, SetLinkedIn] = useState("");
+
+  const [Phone, SetPhone] = useState("");
+  const [Web, SetWeb] = useState("");
+  const [Mail, SetMail] = useState("");
+  const [Locations, SetLocations] = useState("");
+
   const [Social1, SetSocial1] = useState(false);
   const [Timer, SetTimer] = useState(false);
+
   useEffect(() => {
     setTimeout(() => SetTimer(true), 1000);
   }, []);
   useEffect(() => {
-    // console.log(FileData.title);
+    // console.log(FileData.ContactInfo[1]);
+    if (FileData.ContactState && FileData.ContactInfo[1]) {
+      SetPhone(FileData.ContactState[1]);
+    }
+    if (FileData.ContactState && FileData.ContactInfo[2]) {
+      SetWeb(FileData.ContactState[2]);
+    }
+    if (FileData.ContactState && FileData.ContactInfo[3]) {
+      SetMail(FileData.ContactState[3]);
+    }
+    if (FileData.ContactState && FileData.ContactInfo[4]) {
+      SetLocations(FileData.ContactState[4]);
+    }
     if (FileData.name && FileData.name.length > 0) {
       SetName(true);
     } else {
@@ -79,7 +101,7 @@ const UserDisplayCmp = ({ imageData, FileData }) => {
     // console.log(logos[0]);
     // console.log(FileData.Testing);
     // console.log(false && FileData.FiledValue[0]);
-    console.log(FileData.ContactState);
+    // console.log(FileData.ContactState);
   }, [FileData.Testing, FileData.ContactInfo]);
 
   return (
@@ -153,21 +175,21 @@ const UserDisplayCmp = ({ imageData, FileData }) => {
               <div className="flex justify-center">
                 {ids === 1 && (
                   <img
-                    src={Logo}
+                    src={sampleLogo}
                     className="w-28 h-20 -mt-20 ml-4   opacity-80"
                     alt=""
                   />
                 )}
                 {ids === 2 && (
                   <img
-                    src={SecondLogo}
+                    src={sampleLogo}
                     className="w-32 -mt-24 ml-60  opacity-75"
                     alt=""
                   />
                 )}
                 {ids === 3 && (
                   <img
-                    src={ThirLogo}
+                    src={sampleLogo}
                     className="w-20 h-20 -mt-44 ml-60   "
                     alt=""
                   />
@@ -317,9 +339,7 @@ const UserDisplayCmp = ({ imageData, FileData }) => {
                               ids === 2 ? "text-[#243863]" : "text-white"
                             } font-custom pt-1`}
                           >
-                            {FileData.ContactInfo[1]
-                              ? FileData.ContactInfo[1]
-                              : "+xxxxxxxxx"}
+                            {Phone ?? "+xxxxxxxxx"}
                           </h1>
                         </div>
                       )}
@@ -334,9 +354,7 @@ const UserDisplayCmp = ({ imageData, FileData }) => {
                                 ids === 2 ? "text-[#243863]" : "text-white"
                               } font-custom pt-1`}
                             >
-                              {FileData.ContactInfo[2]
-                                ? FileData.ContactInfo[2]
-                                : "www.aara.com"}
+                              {Web ?? "www.aara.com"}
                             </h1>
                           </div>
                         </>
@@ -352,9 +370,7 @@ const UserDisplayCmp = ({ imageData, FileData }) => {
                                 ids === 2 ? "text-[#243863]" : "text-white"
                               } font-custom pt-1`}
                             >
-                              {FileData.ContactInfo[3]
-                                ? FileData.ContactInfo[3]
-                                : "aara@email.com"}
+                              {Mail ?? "aara@email.com"}
                             </h1>
                           </div>
                         </>
@@ -370,9 +386,7 @@ const UserDisplayCmp = ({ imageData, FileData }) => {
                                 ids === 2 ? "text-[#243863]" : "text-white"
                               } font-custom pt-1`}
                             >
-                              {FileData.ContactInfo[4]
-                                ? FileData.ContactInfo[4]
-                                : "onEarth"}
+                              {Locations ?? "onEarth"}
                             </h1>
                           </div>
                         </>

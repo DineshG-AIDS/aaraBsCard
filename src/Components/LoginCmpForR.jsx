@@ -17,15 +17,20 @@ const LoginCmpForR = () => {
     Password: Password,
     IsLogedIn: true,
   };
-  console.log(UserData[1].details.email);
+
   const SubmitHandler = (e) => {
     e.preventDefault();
     for (const userId in UserData) {
       if (Object.prototype.hasOwnProperty.call(UserData, userId)) {
         const user = UserData[userId];
-        if (user.details.email === Data.Email) {
+
+        if (
+          user.details.email === Data.Email &&
+          user.details.password === Data.Password
+        ) {
+          console.log(userId);
           SetVerfiying(true);
-          Cookies.set("user", Data);
+          Cookies.set("user", userId);
           setTimeout(() => Navigate("/"), 1000);
 
           break; // Exit the loop once a match is found

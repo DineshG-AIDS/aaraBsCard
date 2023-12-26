@@ -18,6 +18,7 @@ const SingleEditScreen = () => {
     ids,
     logos,
     contactLogo,
+    sampleLogo,
   } = imageData;
 
   const handleInputChange = (value) => {
