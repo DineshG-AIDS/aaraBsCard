@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { MdOutlineGppGood } from "react-icons/md";
 import { useState, useEffect } from "react";
 import TestingFooterCmp from "../Components/TestingFooterCmp";
+import Navbar from "../Components/NavBar";
 const CardsListScreen = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [Timer, SetTimer] = useState(false);
@@ -22,24 +23,32 @@ const CardsListScreen = () => {
     <>
       {!Timer && <TestingFooterCmp />}
       {Timer && (
-        <div className="grid pl-24 bg-gradient-to-br from-gray-900 to-black pt-10 sm:grid-cols-3 gap-x-10 gap-y-16 no-scrollbar">
-          <FloatingBtn />
-          {Object.keys(data).map((id) => (
-            <div key={id} className="rounded-xl p-10">
-              <img
-                src={data[id].image}
-                alt=""
-                onClick={() => openModal(id)}
-                className="w-4/5  bg-white p-2 rounded-2xl cursor-pointer no-scrollbar"
+        <>
+          <div className="bg-gradient-to-br from-gray-900 to-black">
+            <div className="pt-3">
+              <Navbar />
+            </div>
+
+            <div className="grid pl-24k pt-10 sm:grid-cols-3 gap-x-10 gap-y-16 no-scrollbar">
+              <FloatingBtn />
+              {Object.keys(data).map((id) => (
+                <div key={id} className="rounded-xl p-10">
+                  <img
+                    src={data[id].image}
+                    alt=""
+                    onClick={() => openModal(id)}
+                    className="w-4/5  bg-white p-2 rounded-2xl cursor-pointer no-scrollbar"
+                  />
+                </div>
+              ))}
+              <SpringModal
+                isOpen={!!selectedImage}
+                setIsOpen={closeModal}
+                image={selectedImage}
               />
             </div>
-          ))}
-          <SpringModal
-            isOpen={!!selectedImage}
-            setIsOpen={closeModal}
-            image={selectedImage}
-          />
-        </div>
+          </div>
+        </>
       )}
     </>
   );
@@ -103,6 +112,7 @@ const SpringModal = ({ isOpen, setIsOpen, image }) => {
                     <span className="sm:text-lg text-md">Go Back</span>
                   </div>
                 </button>
+                {console.log(image)}
                 <Link to={`/recreate/${image}`}>
                   <button
                     to={`/recreate/${image}`}

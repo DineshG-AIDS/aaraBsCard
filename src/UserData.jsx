@@ -8,7 +8,7 @@ const UserData = {
     },
     count: 3,
     designDetails: {
-      ids: [1, 2, 3],
+      ids: [1, 2],
       names: "buddy",
       title: "Your title from usedata api",
       links: {

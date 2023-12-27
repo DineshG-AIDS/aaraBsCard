@@ -38,7 +38,7 @@ const LandingScreen = () => {
             animate={{ y: "0%" }}
             exit={{ opacity: 1 }}
             transition={{ duration: 0.75, ease: "easeOut" }}
-            className=" text-gray-300 container mx-auto p-8 overflow-hidden md:rounded-lg md:p-10 lg:p-12"
+            className=" text-gray-300 container mx-auto  overflow-hidden md:rounded-lg md:p-10 lg:p-12"
           >
             <NavBar />
             {/* <div className="flex justify-between">

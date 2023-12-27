@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import UserData from "../UserData";
 
+
 const ProfileCmp = () => {
   const [EditMode, SetEditMode] = useState(false);
   const [Job, SetJob] = useState("");
@@ -56,8 +57,8 @@ const ProfileCmp = () => {
   };
   return (
     <>
-      <div className="flex justify-center sm:pt-20 pt-20 sm:p-0 p-3">
-        <div className="bg-white w-full sm:w-1/2 h-fit rounded-xl ">
+      <div className="flex justify-center mb-10 sm:pt-20 pt-20 sm:p-0 p-3">
+        <div className="bg-white w-full  sm:w-1/2 h-fit rounded-xl ">
           <div className="flex ">
             <div>
               <div className="flex flex-row ">
@@ -489,8 +490,14 @@ const ProfileCmp = () => {
             <div className="flex justify-between">
               <div className="pt-4 pl-2">
                 <Link to="/mycards">
-                  <div className=" w-28  p-2 px-2 m-2 gap-x-0.5  hover:-translate-y-1 flex flex-row cursor-pointer bg-[#16a34a] rounded-full">
-                    <h1 className="font-custom2   text-white ">My Cards</h1>
+                  <div
+                    className={` ${
+                      IsAdmin ? "w-36" : "w-28"
+                    } p-2 px-2 m-2 gap-x-0.5  hover:-translate-y-1 flex flex-row cursor-pointer bg-[#16a34a] rounded-full`}
+                  >
+                    <h1 className="font-custom2   text-white ">
+                      {IsAdmin ? "Owned Cards" : "My Card"}
+                    </h1>
                     <div className="mt-0.5">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -544,7 +551,7 @@ const ProfileCmp = () => {
             </>
           )}
           {IsAdmin && !EditMode && IsAdminArrow && (
-            <div className="flex justify-center  pb-1">
+            <div className="flex justify-center  pb-4">
               <svg
                 onClick={() => SetIsAdminArrow(false)}
                 xmlns="http://www.w3.org/2000/svg"

@@ -1,29 +1,38 @@
-import data from "../Data";
+// import data from "../Data";
 import SampleImage from "../assets/womenprofes.jpg";
 import UserData from "../UserData";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
-const SingleCardCmp = () => {
+const SingleCardCmp = ({
+  top,
+  bg,
+  bottom,
+  logos,
+  contactLogo,
+  sampleLogo,
+  ids,
+}) => {
   let TokenId = Cookies.get("user");
   const { designDetails } = UserData[TokenId];
-  const { ids, name, contactDetails, title } = designDetails;
-  const { top, bg, bottom, logos, contactLogo, sampleLogo } = data[1];
-  console.log(contactDetails.phone);
+  const { name, contactDetails, title } = designDetails;
+  // const { top, bg, bottom, logos, contactLogo, sampleLogo, ids } = data[1];
+  // console.log(ids1);
 
   useEffect(() => {
-    console.log(TokenId);
+    // console.log(TokenId);
+    // console.log(ids1);
   }, []);
   return (
     <>
       {/* <h1 className="text-white">my cards</h1> */}
-      <div className="w-96     rounded-t-lg border-black border-4 border-b-0 overflow-auto no-scrollbar">
-        {/* <div className="bg-black rounded-b-lg ">
+      {/* <div className="w-96     rounded-t-lg border-black border-4 border-b-0 overflow-auto no-scrollbar"> */}
+      {/* <div className="bg-black rounded-b-lg ">
           <h1 className="text-white font-semibold text-center p-4 cursor-default">
             Live Preview
           </h1>
         </div> */}
-        <div className="p-3 flex justify-between ">
-          {/* <input
+      {/* <div className="p-3 flex justify-between "> */}
+        {/* <input
             type="text"
             className="bg-black w-full pr-4 p-4 font-semibold rounded-lg"
             placeholder={`https://aara/bscard/${
@@ -31,7 +40,7 @@ const SingleCardCmp = () => {
             }`}
             disabled
           /> */}
-          {/* <div className="pl-2 pt-2 cursor-default">
+        {/* <div className="pl-2 pt-2 cursor-default">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -47,17 +56,18 @@ const SingleCardCmp = () => {
               />
             </svg>
           </div> */}
-        </div>
-      </div>
+      {/* </div> */}
+      {/* </div> */}
 
       <div
-        className={`w-96   h-[37rem] bg-gray-800 rounded-b-lg border-t-0 overflow-y-auto no-scrollbar  border-black border-4`}
+        className={`w-96   h-[37rem] bg-gray-800 rounded-b-lg rounded-t-lg border-t-0 overflow-y-auto no-scrollbar  border-black border-4`}
       >
         {
           <div
             style={{ backgroundColor: bg }}
             className=" h-full rounded overflow-y-auto  no-scrollbar"
           >
+            {/* <img src={bottom} className="" alt="" /> */}
             {ids === 1 && (
               <div className="-mt-2">
                 <img src={bottom} alt="" />
@@ -404,7 +414,7 @@ const SingleCardCmp = () => {
                 {/* !Social && */}
                 {
                   <>
-                    <div className="flex flex-row gap-x-10 pl-4 pr-4 pt-2  opacity-80">
+                    {/* <div className="flex flex-row gap-x-10 pl-4 pr-4 pt-2  opacity-80">
                       <div>
                         <img src={logos[0]} className="w-10" alt="" />
                       </div>
@@ -422,7 +432,7 @@ const SingleCardCmp = () => {
                       <div>
                         <img src={logos[4]} className="w-10" alt="" />
                       </div>
-                    </div>
+                    </div> */}
                   </>
                 }
                 {/* Social &&  */}
@@ -481,7 +491,7 @@ const SingleCardCmp = () => {
                 {/* !Social1 && */}
                 {
                   <>
-                    <div
+                    {/* <div
                       className={`flex flex-col gap-y-2 cursor-default ${
                         ids === 2 ? "pl-10 pt-4" : "pl-20 pt-4"
                       }  opacity-70`}
@@ -526,7 +536,7 @@ const SingleCardCmp = () => {
                           Coimbatore
                         </h1>
                       </div>
-                    </div>
+                    </div> */}
                   </>
                 }
                 {/* Social1 && */}
@@ -596,25 +606,25 @@ const SingleCardCmp = () => {
                 }
               </>
             )}
-
+            {/* {console.log(ids[0])} */}
             {ids === 1 && (
               <>
-                <div className={`pt-[5rem]`}>
+                <div className={`-mt-[2rem]`}>
                   {ids === 1 && <img src={top} alt="" />}
                 </div>
               </>
             )}
             {ids === 2 && (
-              <div className="-pt-[10rem] bottom-8 right-[11.5rem] fixed">
+              <div className="-pt-[10rem] pl-[18.5rem] ">
                 <div className="-mt-8">
                   <img src={bottom} className="w-20" alt="" />
                 </div>
               </div>
             )}
             {ids === 3 && (
-              <div className="fixed bottom-[1.6rem] pl-1">
-                <div className="-mt-2">
-                  <img src={top} className="w-2/3" alt="" />
+              <div className=" bottom-[1.6rem] pl-">
+                <div className="-mt-6">
+                  <img src={top} className="w-[23.5rem]" alt="" />
                 </div>
               </div>
             )}

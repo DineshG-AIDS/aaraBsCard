@@ -1,4 +1,5 @@
 import NavBar from "../Components/NavBar";
+import Footer from "../Components/Footer";
 
 import ProfileCmp from "../Components/ProfileCmp";
 const UserProfileScreen = () => {
@@ -8,9 +9,11 @@ const UserProfileScreen = () => {
         <div className="pt-3">
           <NavBar />
         </div>
-        <div className="mb-4">
+        <div className="mb-10">
           <ProfileCmp />
         </div>
+        <div className="pt-10">
+        <Footer /></div>
       </div>
     </>
   );

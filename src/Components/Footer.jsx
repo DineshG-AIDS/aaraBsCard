@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <footer className="flex flex-col space-y-10 justify-center m-10">
-      <nav className="flex justify-center flex-wrap gap-20 text-gray-500 font-medium">
+      <nav className="flex justify-center flex-wrap gap-20 text-gray-300 font-medium">
         <a className="hover:text-[#16a34a]" href="#">
           Home
         </a>
@@ -65,7 +65,7 @@ const Footer = () => {
           />
         </a>
       </div>
-      <p className="text-center text-gray-700 font-medium cursor-default">
+      <p className="text-center text-white font-medium cursor-default">
         &copy; 2023 <span className="text-[#16a34a] font-extrabold">AARA</span>{" "}
         Ltd. All rights reserved.
       </p>

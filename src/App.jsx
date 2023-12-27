@@ -8,6 +8,7 @@ import LoginScreen from "./Screens/LoginScreen";
 import Forgetpassword from "./Screens/FogetScreen";
 import UserProfileScreen from "./Screens/UserProfileScreen";
 import MyCardScreen from "./Screens/MyCardScreen";
+import EditScreen from "./Screens/EditScreen";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/forgetpassword" element={<Forgetpassword />} />
         <Route path="/profile" element={<UserProfileScreen />} />
         <Route path="/mycards" element={<MyCardScreen />} />
+        <Route path="/edit/:id" element={<EditScreen />} />
       </Routes>
     </BrowserRouter>
   );
