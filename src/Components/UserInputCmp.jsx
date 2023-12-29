@@ -1,6 +1,21 @@
 import { useState, useEffect } from "react";
-import FrameLoader from "./FrameLoader";
+import { useLocation, useParams } from "react-router";
+import UserData from "../UserData";
+import Cookies from "js-cookie";
+
 const UserInputCmp = ({ onInputChange }) => {
+  const Locations = useLocation();
+  const { id } = useParams();
+  const [LocaForEditScreen, SetLocaForEditScreen] = useState(false);
+
+  const UserId = Cookies.get("user");
+
+  const { Username, Usertitle, phone, mail, web, locations, links } = UserData[
+    UserId
+  ].designDetails.ids[id - 1];
+  console.log(Username, Usertitle);
+  // console.log(UserData[UserId].designDetails.ids[id - 1]);
+
   //   const [DataSubmiter, SetDataSubmiter] = useState(false);
   const [file, SetFile] = useState("");
   const [file1, SetFile1] = useState("");
@@ -20,21 +35,17 @@ const UserInputCmp = ({ onInputChange }) => {
   const [Testing3, SetTesting3] = useState(false);
   const [Testing4, SetTesting4] = useState(false);
 
-  //   This area for geting user input fro their corresponding filed
   const [InstaInput, SetInstaInput] = useState("");
   const [FaceBookInput, SetFaceBookInput] = useState("");
   const [XInput, SetXInput] = useState("");
   const [YoutubeInput, SetYoutubeInput] = useState("");
   const [LinkedInInput, SetLinkedInInput] = useState("");
 
-  // This State for contact infromation
   const [InoutFiled1, SetInoutField1] = useState(true);
   const [Phone, SetPhone] = useState(false);
   const [Web, SetWeb] = useState(false);
   const [Email, SetEmail] = useState(false);
   const [Location, SetLocation] = useState(false);
-
-  // This State for contact infromation input values will here
 
   const [PhoneValue, SetPhoneValue] = useState("");
   const [WebValue, SetWebValue] = useState("");
@@ -64,11 +75,18 @@ const UserInputCmp = ({ onInputChange }) => {
       LoactionValue,
     ],
   };
-  //   this function will be called when the user select a file
+  const Loca = String(Locations.pathname).substring(0, 6);
+  // console.log(Loca);
+
   const DataHandler = () => {
     onInputChange(Data);
   };
-
+  useEffect(() => {
+    if (Loca === "/edit/") {
+      SetLocaForEditScreen(true);
+      // SetInoutField(false);
+    }
+  }, [Locations.pathname, id]);
   useEffect(() => {
     DataHandler();
   }, [
@@ -136,12 +154,12 @@ const UserInputCmp = ({ onInputChange }) => {
     <>
       <div>
         <div>
-          <h1 className="font-extrabold  pl-2 text-2xl text-white">
-            Add Your Pictures
+          <h1 className="font-extrabold  pl-2 text-xl text-white">
+            {LocaForEditScreen ? "Edit Your Pictures" : "Add Your Pictures"}
           </h1>
         </div>
         <div
-          className="border-white border-2 rounded-xl p-2 mt-4 mb-8
+          className="border-white border-2 rounded-xl p- mt-4 mb-8
       "
         >
           <div className="flex flex-row gap-x-32  mb-8 justify-center">
@@ -181,11 +199,9 @@ const UserInputCmp = ({ onInputChange }) => {
                   {firstWord}
                 </h1>
               </div>
-              <div className="fill-white stroke-indigo-500 ">
-                {/* <input type="text " className="" /> */}
-              </div>
+              <div className="fill-white stroke-indigo-500 "></div>
             </div>
-            {/* The USer Profile Input */}
+
             <div>
               <h1 className="font-bold mt-4 pl-2 text-lg text-white">
                 Add your Image
@@ -223,11 +239,11 @@ const UserInputCmp = ({ onInputChange }) => {
 
         {/* Inuot Sectrion */}
         <div>
-          <h1 className="font-extrabold  pl-2 text-2xl text-white">
-            Add Your Details
+          <h1 className="font-extrabold  pl-2 text-xl text-white">
+            {LocaForEditScreen ? "Edit Your Details" : "Add Your Details"}
           </h1>
         </div>
-        <div className="border-white border-2  rounded-xl pl-10 pr-4 p-2 mt-4 mb-8">
+        <div className="border-white border-2  rounded-xl pl-10 pr-4 p-1 mt-4 mb-8">
           <div className="flex flex-row gap-x">
             <div className="flex flex-col">
               <label
@@ -241,7 +257,7 @@ const UserInputCmp = ({ onInputChange }) => {
                   type="text"
                   id="name"
                   className="text-lg pt-1 pb-1 pl-2 font-semibold w-full rounded-xl outline-none bg-gray-950 text-white"
-                  placeholder="Your Name"
+                  placeholder={LocaForEditScreen ? Username : "Your Name"}
                   onChange={(e) => InputHandler("name", e.target.value)}
                   maxLength={10}
                 />
@@ -264,7 +280,7 @@ const UserInputCmp = ({ onInputChange }) => {
                   type="text"
                   id="name"
                   className="text-lg pt-1 pb-1 pl-2 font-semibold w-full rounded-xl outline-none bg-gray-950 text-white"
-                  placeholder="Your Title"
+                  placeholder={LocaForEditScreen ? Usertitle : "Your Title"}
                   onChange={(e) => InputHandler("title", e.target.value)}
                 />
               </div>
@@ -282,8 +298,10 @@ const UserInputCmp = ({ onInputChange }) => {
           </div>
         </div>
         <div>
-          <h1 className="font-extrabold mt-4 mb-4 pl-2 text-2xl text-white">
-            Add Your SocialMedia
+          <h1 className="font-extrabold mt-4 mb-4 pl-2 text-xl text-white">
+            {LocaForEditScreen
+              ? "Edit Your SocialMedia"
+              : " Add Your SocialMedia"}
           </h1>
         </div>
         <div>
@@ -651,7 +669,7 @@ const UserInputCmp = ({ onInputChange }) => {
           {/* This is for Caontact details */}
           <div>
             <h1 className="font-extrabold mt-4 mb-4 pl-2 text-2xl text-white">
-              Add Your Contact
+              {LocaForEditScreen ? "Edit Your Contact" : " Add Your Contact"}
             </h1>
           </div>
           <div>

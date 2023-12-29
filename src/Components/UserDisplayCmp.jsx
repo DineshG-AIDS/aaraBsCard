@@ -1,5 +1,4 @@
 // import Logo from "../assets/10logo-removebg-preview.png";
-
 import SampleImage from "../assets/womenprofes.jpg";
 import { useEffect, useState } from "react";
 // import SecondLogo from "../assets/11logo.png";
@@ -106,13 +105,13 @@ const UserDisplayCmp = ({ imageData, FileData }) => {
 
   return (
     <>
-      <div className="w-96  bg-gray-800   rounded-t-lg border-black border-4 border-b-0 overflow-auto no-scrollbar">
+      <div className="w-[23rem]  bg-gray-800   rounded-t-lg border-black border-4 border-b-0 overflow-auto no-scrollbar">
         <div className="bg-black rounded-b-lg ">
           <h1 className="text-white font-semibold text-center p-4 cursor-default">
             Live Preview
           </h1>
         </div>
-        <div className="p-3 flex justify-between ">
+        <div className="p-1.5 flex justify-between ">
           <input
             type="text"
             className="bg-black w-full pr-4 p-4 font-semibold rounded-lg"
@@ -141,7 +140,7 @@ const UserDisplayCmp = ({ imageData, FileData }) => {
       </div>
 
       <div
-        className={`w-96   h-[37rem] bg-gray-800 rounded-b-lg border-t-0 overflow-y-auto no-scrollbar  border-black border-4`}
+        className={`w-[23rem]  h-[35rem] bg-gray-800 rounded-b-lg border-t-0 overflow-y-auto no-scrollbar  border-black border-4`}
       >
         {!Timer && (
           <m.div>
@@ -233,13 +232,10 @@ const UserDisplayCmp = ({ imageData, FileData }) => {
             >
               <div className="mt-2 font-semibold  ">
                 <h1
-                  className={`font-semibold font-custom text-2xl ${
-                    ids === 3 ? "text-black uppercase text-start  -mt-16" : ""
-                  }  cursor-default ${
-                    ids === 2
-                      ? "text-[#243863] font-custom1 capitalize text-start text-3xl"
-                      : "text-white capitalize text-center "
-                  } `}
+                  className={`font-semibold font-custom text-2xl ${ids == 1 &&
+                    "text-white text-center"}  ${ids == 3 && "-mt-16"} ${ids ==
+                    2 && "text-[#243863] text-start font-custom1"}
+                  `}
                 >
                   {ids === 3 && (
                     <>
@@ -249,13 +245,11 @@ const UserDisplayCmp = ({ imageData, FileData }) => {
                   {names ? FileData.name : "Your Name"}
                 </h1>
                 <h1
-                  className={` ${
-                    ids === 3 ? "text-[#2c89db] uppercase text-start" : ""
-                  } text-md  font-custom ${
-                    ids === 2
-                      ? "text-[#243863] text-start font-custom1 text-lg"
-                      : "text-white text-center"
-                  } cursor-default capitalize whitespace-pre-line`}
+                  className={` ${ids == 1 && "text-white text-center"} ${ids ==
+                    3 &&
+                    "text-[#2c89db] uppercase font-semibold text-start"}  ${ids ==
+                    2 &&
+                    "text-[#243863] text-start font-custom1"} cursor-default uppercase whitespace-pre-line`}
                 >
                   {Titles ? FileData.title : "Your Title"}
                 </h1>
@@ -273,49 +267,25 @@ const UserDisplayCmp = ({ imageData, FileData }) => {
                     >
                       <div className="flex flex-row gap-x-2">
                         <img src={contactLogo[0]} className="w-8" alt="" />
-                        <h1
-                          className={`text-md  ${
-                            ids === 2 ? "text-[#243863]" : "text-white"
-                          } ${
-                            ids === 3 ? "text-[#2d8adc]" : "text-white"
-                          } font-custom pt-1`}
-                        >
+                        <h1 className={`text-md text-black font-custom pt-1`}>
                           +8300403272
                         </h1>
                       </div>
                       <div className="flex flex-row gap-x-2">
                         <img src={contactLogo[1]} className="w-8" alt="" />
-                        <h1
-                          className={`text-md ${
-                            ids === 2 ? "text-[#243863]" : "text-white"
-                          } ${
-                            ids === 3 ? "text-[#2d8adc]" : "text-white"
-                          } font-custom pt-1`}
-                        >
+                        <h1 className={`text-md text-black font-custom pt-1`}>
                           www.aara.com
                         </h1>
                       </div>
                       <div className="flex flex-row gap-x-2">
                         <img src={contactLogo[2]} className="w-8" alt="" />
-                        <h1
-                          className={`text-md ${
-                            ids === 2 ? "text-[#243863]" : "text-white"
-                          } ${
-                            ids === 3 ? "text-[#2d8adc]" : "text-white"
-                          } font-custom pt-1`}
-                        >
+                        <h1 className={`text-md text-black font-custom pt-1`}>
                           aara@email.com
                         </h1>
                       </div>
                       <div className="flex flex-row gap-x-2">
                         <img src={contactLogo[3]} className="w-8" alt="" />
-                        <h1
-                          className={`text-md ${
-                            ids === 2 ? "text-[#243863]" : "text-white"
-                          } ${
-                            ids === 3 ? "text-[#2d8adc]" : "text-white"
-                          } font-custom pt-1`}
-                        >
+                        <h1 className={`text-md text-black font-custom pt-1`}>
                           Coimbatore
                         </h1>
                       </div>
@@ -722,6 +692,7 @@ const UserDisplayCmp = ({ imageData, FileData }) => {
               </>
             )}
 
+            {console.log(FileData.ContactState[0])}
             {ids === 1 && (
               <>
                 <div className={`pt-[5rem]`}>
@@ -730,16 +701,32 @@ const UserDisplayCmp = ({ imageData, FileData }) => {
               </>
             )}
             {ids === 2 && (
-              <div className="-pt-[10rem] bottom-8 right-[11.5rem] fixed">
-                <div className="-mt-8">
-                  <img src={bottom} className="w-20" alt="" />
+              <div
+                className={` pl-[18.5rem] ${FileData.ContactState[0] &&
+                  "pt-24"}   ${FileData.ContactState[1] && "pt-16"} ${FileData
+                  .ContactState[2] && "mt-8"}${!FileData.ContactState[0] &&
+                  !FileData.ContactState[0] &&
+                  FileData.ContactState[3] &&
+                  "-pt-96 "}  ${FileData.ContactState[3] &&
+                  "-mt - 20"}  -mt-4  mb-2`}
+              >
+                <div className="-mt-">
+                  <img src={bottom} className="w-42" alt="" />
                 </div>
               </div>
             )}
             {ids === 3 && (
-              <div className="fixed bottom-[1.6rem] pl-1">
+              <div
+                className={`${FileData.ContactState[0] &&
+                  "pt-24"}   ${FileData.ContactState[1] && "pt-16"} ${FileData
+                  .ContactState[2] && "mt-"}${!FileData.ContactState[0] &&
+                  !FileData.ContactState[0] &&
+                  FileData.ContactState[3] &&
+                  "-pt- "}  ${FileData.ContactState[3] &&
+                  "-mt - 20"}  -mt-  mb-`}
+              >
                 <div className="-mt-2">
-                  <img src={top} className="w-2/3" alt="" />
+                  <img src={top} className="w-[23.5rem]" alt="" />
                 </div>
               </div>
             )}

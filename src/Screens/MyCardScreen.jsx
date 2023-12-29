@@ -12,7 +12,10 @@ const MyCardScreen = () => {
   const { count, designDetails } = UserData[tokenId];
 
   const ids = designDetails.ids;
-  const data1 = ids.map((id) => data[id]);
+
+  const idsArray = ids.map((item) => item.id);
+  const data1 = idsArray.map((id) => data[id]);
+  console.log(designDetails.ids[0].name);
 
   return (
     <>
@@ -23,7 +26,7 @@ const MyCardScreen = () => {
         <HeaderCmp />
         {count > 0 && (
           <>
-            <div className="flex flex-row pl-32  gap-x-14 mb-20  ">
+            <div className="flex flex-row pl-40  gap-x-20 mb-20  ">
               {data1.map((item, index) => (
                 <>
                   <div
@@ -31,7 +34,16 @@ const MyCardScreen = () => {
                     className="  bg-white p-2 rounded-2xl cursor-pointer no-scrollbar"
                   >
                     <Link to={`/edit/${index + 1}`}>
-                      <SingleCardCmp {...item} key={index} />
+                      <SingleCardCmp
+                        phone={designDetails.ids[index].phone}
+                        web={designDetails.ids[index].web}
+                        mail={designDetails.ids[index].mail}
+                        location={designDetails.ids[index].locations}
+                        names={designDetails.ids[index].Username}
+                        titles={designDetails.ids[index].Usertitle}
+                        {...item}
+                        key={index}
+                      />
                     </Link>
                   </div>
                 </>

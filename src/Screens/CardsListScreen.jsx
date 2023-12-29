@@ -6,6 +6,7 @@ import { MdOutlineGppGood } from "react-icons/md";
 import { useState, useEffect } from "react";
 import TestingFooterCmp from "../Components/TestingFooterCmp";
 import Navbar from "../Components/NavBar";
+// import Footer from "../Components/Footer";
 const CardsListScreen = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [Timer, SetTimer] = useState(false);
@@ -24,12 +25,12 @@ const CardsListScreen = () => {
       {!Timer && <TestingFooterCmp />}
       {Timer && (
         <>
-          <div className="bg-gradient-to-br from-gray-900 to-black">
+          <div className="bg-gradient-to-br from-gray-900 to-black h-fit">
             <div className="pt-3">
               <Navbar />
             </div>
 
-            <div className="grid pl-24k pt-10 sm:grid-cols-3 gap-x-10 gap-y-16 no-scrollbar">
+            <div className="grid ml-24 pt-10 sm:grid-cols-3       gap-x-10 gap-y-16 no-scrollbar">
               <FloatingBtn />
               {Object.keys(data).map((id) => (
                 <div key={id} className="rounded-xl p-10">
@@ -47,6 +48,9 @@ const CardsListScreen = () => {
                 image={selectedImage}
               />
             </div>
+            {/* <div className="bg-black ">
+              <Footer />
+            </div> */}
           </div>
         </>
       )}
