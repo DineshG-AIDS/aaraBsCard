@@ -150,6 +150,12 @@ const UserInputCmp = ({ onInputChange }) => {
   const hideSelectText = Insta && FaceBook && X && Youtube && LinkedIn;
   const hideSelectTextForContactInfo = Phone && Email && Web && Location;
 
+  useEffect(() => {
+    if (LocaForEditScreen) {
+      SetName(Username);
+    }
+  }, [LocaForEditScreen, Username]);
+
   return (
     <>
       <div>
@@ -260,6 +266,7 @@ const UserInputCmp = ({ onInputChange }) => {
                   placeholder={LocaForEditScreen ? Username : "Your Name"}
                   onChange={(e) => InputHandler("name", e.target.value)}
                   maxLength={10}
+                  value={name}
                 />
               </div>
               {/* <h1 className="pl-4 text-white font-semibold p-2 text-md capitalize">

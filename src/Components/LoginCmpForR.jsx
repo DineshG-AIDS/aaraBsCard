@@ -45,7 +45,7 @@ const LoginCmpForR = () => {
   // );
   useEffect(() => {
     Axois.get(
-      "https://business-app-d64r.onrender.com:443/api/v0/template/getAll"
+      "https://business-app-d64r.onrender.com:443/api/v0/user/getByEmail/"
     )
       .then((res) => {
         console.log(res.data);

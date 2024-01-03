@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import UserData from "../UserData";
 
-
 const ProfileCmp = () => {
   const [EditMode, SetEditMode] = useState(false);
   const [Job, SetJob] = useState("");

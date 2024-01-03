@@ -4,10 +4,10 @@ const Tabs = () => {
   const [openTab, setOpenTab] = React.useState(1);
   return (
     <>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap gap-y-10">
         <div className="w-full">
           <ul
-            className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row"
+            className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row gap-y-4"
             role="tablist"
           >
             <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
@@ -26,7 +26,7 @@ const Tabs = () => {
                 href="#link1"
                 role="tablist"
               >
-                Profile
+                No. of Cards
               </a>
             </li>
             <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
@@ -45,7 +45,7 @@ const Tabs = () => {
                 href="#link2"
                 role="tablist"
               >
-                Settings
+                List of user
               </a>
             </li>
             <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
@@ -64,7 +64,7 @@ const Tabs = () => {
                 href="#link3"
                 role="tablist"
               >
-                Options
+                Total Design
               </a>
             </li>
           </ul>
