@@ -13,7 +13,7 @@ const UserInputCmp = ({ onInputChange }) => {
   const { Username, Usertitle, phone, mail, web, locations, links } = UserData[
     UserId
   ].designDetails.ids[id - 1];
-  console.log(Username, Usertitle);
+  console.log(links.insta);
   // console.log(UserData[UserId].designDetails.ids[id - 1]);
 
   //   const [DataSubmiter, SetDataSubmiter] = useState(false);
@@ -154,7 +154,25 @@ const UserInputCmp = ({ onInputChange }) => {
     if (LocaForEditScreen) {
       SetName(Username);
     }
-  }, [LocaForEditScreen, Username]);
+    if (LocaForEditScreen) {
+      SetTitle(Usertitle);
+      SetLinkedInInput(links.linkedin);
+      SetInstaInput(links.insta);
+      SetFaceBookInput(links.facebook);
+      SetXInput(links.X);
+      SetYoutubeInput(links.youtube);
+      SetLinkedInInput(links.linkedin);
+    }
+    if (LocaForEditScreen) {
+      SetInoutField(false);
+      SetCDisplayCmp("valid");
+      SetInsta(true);
+      SetFaceBook(true);
+      SetX(true);
+      SetYoutube(true);
+      SetLinkedIn(true);
+    }
+  }, [LocaForEditScreen, Username, Usertitle]);
 
   return (
     <>
@@ -264,7 +282,10 @@ const UserInputCmp = ({ onInputChange }) => {
                   id="name"
                   className="text-lg pt-1 pb-1 pl-2 font-semibold w-full rounded-xl outline-none bg-gray-950 text-white"
                   placeholder={LocaForEditScreen ? Username : "Your Name"}
-                  onChange={(e) => InputHandler("name", e.target.value)}
+                  onChange={(e) => {
+                    InputHandler("name", e.target.value);
+                    DataHandler();
+                  }}
                   maxLength={10}
                   value={name}
                 />
@@ -287,8 +308,9 @@ const UserInputCmp = ({ onInputChange }) => {
                   type="text"
                   id="name"
                   className="text-lg pt-1 pb-1 pl-2 font-semibold w-full rounded-xl outline-none bg-gray-950 text-white"
-                  placeholder={LocaForEditScreen ? Usertitle : "Your Title"}
+                  placeholder={LocaForEditScreen ? "New Title" : "Your Title"}
                   onChange={(e) => InputHandler("title", e.target.value)}
+                  value={tilte}
                 />
               </div>
             </div>
@@ -366,10 +388,15 @@ const UserInputCmp = ({ onInputChange }) => {
                       type="text"
                       id="inputfiled"
                       className="rounded-tr-2xl bg-gray-900 text-white rounded-br-2xl pl-4 w-1/2 p-2"
-                      placeholder="https://www.instagram.com/aara"
+                      placeholder={
+                        LocaForEditScreen
+                          ? "New Link please"
+                          : "https://www.instagram.com/aara"
+                      }
                       onChange={(e) => {
                         InputHandler("insta", e.target.value);
                       }}
+                      value={InstaInput}
                     />
                     <div
                       className="pl-1 ml-2 pt-2 cursor-pointer hover:bg-indigo-500/60 p-1 rounded-lg"
@@ -409,10 +436,15 @@ const UserInputCmp = ({ onInputChange }) => {
                       type="text"
                       id="inputfiled"
                       className="rounded-tr-2xl bg-gray-900 text-white rounded-br-2xl w-1/2 pl-4 p-2"
-                      placeholder="https://www.facebook.com/aara"
+                      placeholder={
+                        LocaForEditScreen
+                          ? "New Link please"
+                          : "https://www.facebook.com/aara"
+                      }
                       onChange={(e) => {
                         InputHandler("facebook", e.target.value);
                       }}
+                      value={FaceBookInput}
                     />
                     <div
                       className="pl-1 ml-2 pt-2 cursor-pointer hover:bg-indigo-500/60 p-1 rounded-lg"
@@ -452,10 +484,15 @@ const UserInputCmp = ({ onInputChange }) => {
                       type="text"
                       id="inputfiled"
                       className="rounded-tr-2xl bg-gray-900 text-white rounded-br-2xl w-1/2 pl-4 p-2"
-                      placeholder="https://www.X.com/aara"
+                      placeholder={
+                        LocaForEditScreen
+                          ? "New Link Please"
+                          : "https://www.X.com/aara"
+                      }
                       onChange={(e) => {
                         InputHandler("x", e.target.value);
                       }}
+                      value={XInput}
                     />
                     <div
                       className="pl-1 ml-2 pt-2 cursor-pointer hover:bg-indigo-500/60 p-1 rounded-lg"
@@ -498,7 +535,12 @@ const UserInputCmp = ({ onInputChange }) => {
                         InputHandler("yt", e.target.value);
                       }}
                       className="rounded-tr-2xl bg-gray-900 text-white rounded-br-2xl w-1/2 pl-4 p-2"
-                      placeholder="https://www.youtube.com/aara"
+                      placeholder={
+                        LocaForEditScreen
+                          ? "New Link Please"
+                          : "https://www.youtube.com/aara"
+                      }
+                      value={YoutubeInput}
                     />
                     <div
                       className="pl-1 ml-2 pt-2 cursor-pointer hover:bg-indigo-500/60 p-1 rounded-lg"
@@ -537,7 +579,12 @@ const UserInputCmp = ({ onInputChange }) => {
                         InputHandler("link", e.target.value);
                       }}
                       className="rounded-tr-2xl bg-gray-900 rounded-br-2xl w-1/2 text-white pl-4 p-2"
-                      placeholder="https://www.linkedin.com/aara"
+                      placeholder={
+                        LocaForEditScreen
+                          ? "New Link Please"
+                          : "https://www.linkedin.com/aara"
+                      }
+                      value={LinkedInInput}
                     />
                     <div
                       className="pl-1 ml-2 pt-2 cursor-pointer hover:bg-indigo-500/60 p-1 rounded-lg"

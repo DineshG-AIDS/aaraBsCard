@@ -41,6 +41,7 @@ const LoginCmpForR = () => {
   // fetch("https://business-app-d64r.onrender.com/swagger-ui.html").then(
   //   (res) => {
   //     console.log(res);
+  
   //   }
   // );
   useEffect(() => {
