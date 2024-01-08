@@ -14,9 +14,7 @@ const UserInputCmp = ({ onInputChange }) => {
     UserId
   ].designDetails.ids[id - 1];
   console.log(links.insta);
-  // console.log(UserData[UserId].designDetails.ids[id - 1]);
-
-  //   const [DataSubmiter, SetDataSubmiter] = useState(false);
+ 
   const [file, SetFile] = useState("");
   const [file1, SetFile1] = useState("");
   const [name, SetName] = useState("");
