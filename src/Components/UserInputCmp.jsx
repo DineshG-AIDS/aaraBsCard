@@ -15,7 +15,7 @@ const UserInputCmp = ({ onInputChange }) => {
   const { Username, Usertitle, phone, mail, web, locations, links } = UserData[
     UserId
   ].designDetails.ids[id - 1];
-  console.log(links.insta);
+  // console.log(locations);
 
   const [file, SetFile] = useState("");
   const [file1, SetFile1] = useState("");
@@ -57,7 +57,7 @@ const UserInputCmp = ({ onInputChange }) => {
     // Toggle the state between true and false
     setCtBtn((prevCtBtn) => !prevCtBtn);
   };
-  console.log(SaveBtn);
+  console.log(InstaInput);
   const Data = {
     Logo: file,
     Profile: file1,
@@ -125,7 +125,7 @@ const UserInputCmp = ({ onInputChange }) => {
     } else if (i === "file1") {
       const reader = new FileReader();
       reader.onloadend = () => {
-        SetFile1(reader.result); // Set the file content to file1 state
+        SetFile1(reader.result);
       };
       reader.readAsDataURL(v);
     } else if (i === "name") {
@@ -155,11 +155,19 @@ const UserInputCmp = ({ onInputChange }) => {
   };
   const hideSelectText = Insta && FaceBook && X && Youtube && LinkedIn;
   const hideSelectTextForContactInfo = Phone && Email && Web && Location;
-
+  useEffect(() => {
+    if (LocaForEditScreen) {
+      SetPhoneValue(phone);
+      SetWebValue(web);
+      SetEmailValue(mail);
+      SetLocationValue(locations);
+    }
+  }, [PhoneValue, phone]);
   useEffect(() => {
     if (LocaForEditScreen) {
       SetName(Username);
     }
+
     if (LocaForEditScreen) {
       SetTitle(Usertitle);
       SetLinkedInInput(links.linkedin);
@@ -168,17 +176,25 @@ const UserInputCmp = ({ onInputChange }) => {
       SetXInput(links.X);
       SetYoutubeInput(links.youtube);
       SetLinkedInInput(links.linkedin);
+      SetPhoneValue(phone);
     }
+    console.log("LocaForEditScreen:", LocaForEditScreen);
+    console.log("PhoneValue in useEffect:", PhoneValue);
     if (LocaForEditScreen) {
       SetInoutField(false);
+      SetInoutField1(false);
       SetCDisplayCmp("valid");
       SetInsta(true);
       SetFaceBook(true);
       SetX(true);
       SetYoutube(true);
       SetLinkedIn(true);
+      SetPhone(true);
+      SetWeb(true);
+      SetEmail(true);
+      SetLocation(true);
     }
-  }, [LocaForEditScreen, Username, Usertitle]);
+  }, [LocaForEditScreen, Username, Usertitle, PhoneValue]);
 
   return (
     <>
@@ -789,20 +805,21 @@ const UserInputCmp = ({ onInputChange }) => {
                         <input
                           type="text"
                           id="inputfiled"
-                          className="rounded-tr-2xl bg-gray-900 text-white rounded-br-2xl pl-4 w-1/2 p-2"
-                          placeholder="+XXXXXXXXXX"
-                          inputMode="numeric"
-                          pattern="[0-9]*"
-                          onKeyPress={(e) => {
-                            const keyCode = e.charCode || e.keyCode;
-                            const validKey = keyCode >= 48 && keyCode <= 57; // Allow only numeric keys
-                            if (!validKey) {
-                              e.preventDefault();
-                            }
-                          }}
                           onChange={(e) => {
                             InputHandler("phone", e.target.value);
                           }}
+                          className="rounded-tr-2xl bg-gray-900 text-white rounded-br-2xl pl-4 w-1/2 p-2"
+                          placeholder="+XXXXXXXXXX"
+                          // inputMode="numeric"
+                          // pattern="[0-9]*"
+                          // onKeyPress={(e) => {
+                          //   const keyCode = e.charCode || e.keyCode;
+                          //   const validKey = keyCode >= 48 && keyCode <= 57;
+                          //   if (!validKey) {
+                          //     e.preventDefault();
+                          //   }
+                          // }}
+                          value={PhoneValue}
                         />
 
                         <div
@@ -840,6 +857,7 @@ const UserInputCmp = ({ onInputChange }) => {
                           onChange={(e) => {
                             InputHandler("web", e.target.value);
                           }}
+                          value={WebValue}
                         />
                         <div
                           className="pl-1 ml-2 pt-2 cursor-pointer hover:bg-indigo-500/60 p-1 rounded-lg"
@@ -879,6 +897,7 @@ const UserInputCmp = ({ onInputChange }) => {
                           onChange={(e) => {
                             InputHandler("email", e.target.value);
                           }}
+                          value={EmailValue}
                         />
                         <div
                           className="pl-1 ml-2 pt-2 cursor-pointer hover:bg-indigo-500/60 p-1 rounded-lg"
@@ -914,6 +933,7 @@ const UserInputCmp = ({ onInputChange }) => {
                           onChange={(e) => {
                             InputHandler("loc", e.target.value);
                           }}
+                          value={LoactionValue}
                         />
                         <div
                           className="pl-1 ml-2 pt-2 cursor-pointer hover:bg-indigo-500/60 p-1 rounded-lg"
@@ -1069,7 +1089,7 @@ const UserInputCmp = ({ onInputChange }) => {
                 )}
               </div>
             </div>
-            <div>
+            {/* <div>
               <div className="flex flex-row pt-6 pl-3">
                 <div className="-mt-0.5">
                   {" "}
@@ -1102,7 +1122,7 @@ const UserInputCmp = ({ onInputChange }) => {
                   Save
                 </button>
               )}
-            </div>
+            </div> */}
           </div>
         </div>
       )}

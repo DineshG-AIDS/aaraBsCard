@@ -20,7 +20,7 @@ const Nav = () => {
   }, []);
   return (
     <div className="">
-      <div className=" mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl ">
+      <div className=" mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl  ">
         <div className="relative flex items-center justify-between">
           <Link
             to="/"
@@ -91,13 +91,13 @@ const Nav = () => {
               )}
             </li>
           </ul>
-          <ul className="flex items-center hidden space-x-8 lg:flex">
+          <ul className="flex items-center space-x-8 lg:flex">
             <li>
               {Verifying ? (
                 <>
                   <div
                     onClick={Logouthandler}
-                    className=" bg-[#16a34a] rounded-2xl  ml-4 mb-4 p-1  text-sm  text-white font-bold  hover:-translate-y-1 "
+                    className=" bg-[#16a34a] rounded-2xl  ml-4 mb- p-1  text-sm  text-white font-bold  hover:-translate-y-1 "
                   >
                     <h1 className=" cursor-pointer text-xl font-bold px-6 py-1 text-white ">
                       Logout

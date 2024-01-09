@@ -717,9 +717,9 @@ const UserDisplayCmp = ({ imageData, FileData }) => {
             )}
             {ids === 3 && (
               <div
-                className={`${FileData.ContactState[0] &&
-                  "pt-24"}   ${FileData.ContactState[1] && "pt-16"} ${FileData
-                  .ContactState[2] && "mt-"}${!FileData.ContactState[0] &&
+                className={`${FileData.ContactState[0] && "pt-24"}   ${FileData
+                  .ContactState[1] && "pt-16"} ${FileData.ContactState[2] &&
+                  "mt-"}${!FileData.ContactState[0] &&
                   !FileData.ContactState[0] &&
                   FileData.ContactState[3] &&
                   "-pt- "}  ${FileData.ContactState[3] &&
