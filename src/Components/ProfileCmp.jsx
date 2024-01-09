@@ -11,6 +11,7 @@ const ProfileCmp = () => {
   const [Location, SetLocation] = useState("");
   const [Description, SetDescription] = useState("");
   const [Name, Setname] = useState("");
+  const [Email, SetEmail] = useState("");
   const [FaceBookUrl, SetFaceBookUrl] = useState("");
   const [XUrl, SetXUrl] = useState("");
   const [GithubUrl, SetGithubUrl] = useState("");
@@ -31,6 +32,7 @@ const ProfileCmp = () => {
     YtUrl: YtUrl,
     LkUrl: LkUrl,
   };
+  console.log(DataForLS);
 
   const SubmitHandler = (e) => {
     if (e) {
@@ -45,10 +47,13 @@ const ProfileCmp = () => {
     if (details.isAdmin) {
       SetIsAdmin(true);
     }
-    console.log(details);
+    // if (details.email) {
+    //   SetEmail(details.email);
+    // }
+    console.log(details.email);
 
     console.log(tokenId);
-  }, []);
+  }, [details.isAdmin, details.email, Email]);
   const InputHandler = (i, val) => {
     if (i === "job") {
       SetJob(val);
@@ -70,6 +75,8 @@ const ProfileCmp = () => {
       SetYtUrl(val);
     } else if (i === "link") {
       SetLkUrl(val);
+    } else if (i === "email") {
+      SetEmail(val);
     }
   };
   return (
@@ -184,9 +191,51 @@ const ProfileCmp = () => {
               </div>
             )}
           </div>
-
           <div className="pl-2">
-            <div className="flex flex-row p-4">
+            <div className="flex flex-row pl-3 mt-3">
+              <svg
+                width="30px"
+                height="30px"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g id="SVGRepo_bgCarrier" strokeWidth="2"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  {" "}
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M3.75 5.25L3 6V18L3.75 18.75H20.25L21 18V6L20.25 5.25H3.75ZM4.5 7.6955V17.25H19.5V7.69525L11.9999 14.5136L4.5 7.6955ZM18.3099 6.75H5.68986L11.9999 12.4864L18.3099 6.75Z"
+                    fill="#16a34a"
+                  ></path>{" "}
+                </g>
+              </svg>
+              {!EditMode && (
+                <h1 className="cursor-default font-custom2 pl-1 text-lg capitalize">
+                  {Email ? Email : details.email}
+                </h1>
+              )}
+              {EditMode && (
+                <>
+                  <input
+                    type="text"
+                    onChange={(e) => InputHandler("email", e.target.value)}
+                    placeholder="Enter Your Email 📧"
+                    // value={Email}
+                    className="text-black font-custom2 ml-1 p-1 rounded-lg focus:ring-0.5 border-[#16a34a] border-2 focus:outline-none focus:ring-green-400 dark:focus:ring-green-500"
+                  />
+                </>
+              )}
+            </div>
+          </div>
+          <div className="pl-2">
+            <div className="flex flex-row p-2 pl-4">
               <svg
                 className="h-[1.4rem] fill-[#16a34a] text-green-700 pr-2 mt-1"
                 xmlns="http://www.w3.org/2000/svg"
@@ -486,7 +535,7 @@ const ProfileCmp = () => {
                     type="text"
                     id="inputfiled"
                     className="rounded-tr-2xl bg-white text-gray-900 border-green-500 border-2 font-custom2 rounded-br-2xl pl-3 w-1/2 focus:ring-0.5 focus:outline-none focus:ring-green-400 dark:focus:ring-green-500"
-                    placeholder="Youtube URL"
+                    placeholder="LinkedIn URL"
                     onChange={(e) => {
                       InputHandler("link", e.target.value);
                     }}

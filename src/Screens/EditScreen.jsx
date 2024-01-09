@@ -22,7 +22,7 @@ const EditScreen = () => {
     contactLogo,
     sampleLogo,
   } = imageData;
-
+  // console.log("hello");
   const handleInputChange = (value) => {
     setUserInput(value);
   };
@@ -52,6 +52,7 @@ const EditScreen = () => {
           </div>
           <div className="pr-44 pt-12    top-0 right-0">
             <UserDisplayCmp imageData={imageData} FileData={{ ...userInput }} />
+         
           </div>
         </div>
         {/* <div></div>

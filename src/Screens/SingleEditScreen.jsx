@@ -5,6 +5,7 @@ import UserInputCmp from "../Components/UserInputCmp";
 import { useState, useEffect } from "react";
 import FrameLoader from "../Components/FrameLoader";
 import Navbar from "../Components/NavBar";
+import { Link } from "react-router-dom";
 // import Footer from "../Components/Footer";
 const SingleEditScreen = () => {
   const [userInput, setUserInput] = useState("");
@@ -36,9 +37,7 @@ const SingleEditScreen = () => {
     window.addEventListener("beforeunload", unloadCallback);
     return () => window.removeEventListener("beforeunload", unloadCallback);
   }, []);
-  useEffect(() => {
-   
-  }, [userInput]);
+  useEffect(() => {}, [userInput]);
   return (
     <>
       <div className="bg-gray-800 h-screen overflow-y-auto no-scrollbar ">
@@ -54,6 +53,14 @@ const SingleEditScreen = () => {
           </div>
           <div className="pr-44 pt-12    top-0 right-0">
             <UserDisplayCmp imageData={imageData} FileData={{ ...userInput }} />
+            <h1 className="text-[#16a34a] capitalize font-custom2 text-center pt-1 cursor-default">
+              The Created Design will Available on{" "}
+              <Link to="/mycards">
+                <span className="text-white pl-1 hover:text-gray-400 cursor-pointer">
+                  Mycard
+                </span>
+              </Link>
+            </h1>
           </div>
         </div>
         {/* <div></div>
