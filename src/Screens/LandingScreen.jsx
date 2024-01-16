@@ -68,7 +68,7 @@ const LandingScreen = () => {
             </div> */}
 
             <div className="h-32 md:h-26"></div>
-
+            {/* <h1>hello</h1> */}
             <p className="font-sans cursor-default text-4xl font-bold text-gray-200 max-w-5xl lg:text-7xl lg:pr-24 md:text-6xl">
               Spend less <span className="text-[#16a34a]">On</span> Creating
               your Business card

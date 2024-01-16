@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Lottie from "lottie-react";
 import AnimationData from "../assets/SucessAnimation1ForLogin.json";
 import UserData from "../UserData";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+// import jwt_decode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
+
 import Axois from "axios";
 const LoginCmpForR = () => {
   const [Hide, Sethide] = useState(true);
@@ -41,20 +45,22 @@ const LoginCmpForR = () => {
   // fetch("https://business-app-d64r.onrender.com/swagger-ui.html").then(
   //   (res) => {
   //     console.log(res);
-  
+
   //   }
   // );
-  useEffect(() => {
-    Axois.get(
-      "https://business-app-d64r.onrender.com:443/api/v0/user/getByEmail/"
-    )
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+
+  const UserSubmitDataGoogle = (UserData) => {};
+  // useEffect(() => {
+  //   Axois.get(
+  //     "https://business-app-d64r.onrender.com:443/api/v0/user/getByEmail/"
+  //   )
+  //     .then((res) => {
+  //       console.log(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
   const InputHandler = (i, val) => {
     if (i === "email") {
       SetEmail(val);
@@ -96,9 +102,9 @@ const LoginCmpForR = () => {
                 <h1 className="text-2xl xl:text-3xl font-extrabold">Sign In</h1>
                 <div className="w-full flex-1 mt-8">
                   <div className="flex flex-col items-center">
-                    <button className="w-full max-w-xs font-bold shadow-sm rounded-full py-1 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
+                    <button className="p-4 px-3 py-3 font-bold shadow-sm rounded-full  bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
                       <div className="bg-white rounded-full">
-                        <svg
+                        {/* <svg
                           xmlns="http://www.w3.org/2000/svg"
                           x="0px"
                           y="0px"
@@ -122,9 +128,31 @@ const LoginCmpForR = () => {
                             fill="#1565c0"
                             d="M43.611,20.083L43.595,20L42,20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571	c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"
                           ></path>
-                        </svg>
+                        </svg> */}
                       </div>
-                      <span className="ml-4">Sign In with Google</span>
+                      <GoogleOAuthProvider clientId="976957429910-rd0f8uqns0e19o0h311hm3v2j5nt70st.apps.googleusercontent.com">
+                        <GoogleLogin
+                          shape="pill"
+                          theme="filled_blue"
+                          onSuccess={(credentialResponse) => {
+                            let token = credentialResponse.credential;
+                            let res = jwtDecode(token);
+                            const UserDataGoogle = {
+                              username: res.name,
+                              email: res.email,
+                              profile: res.picture,
+                            };
+                            {
+                              console.log(UserDataGoogle);
+                            }
+                            UserSubmitDataGoogle(UserData);
+                          }}
+                          onError={() => {
+                            console.log("Login Failed");
+                          }}
+                        />
+                      </GoogleOAuthProvider>
+                      {/* <span className="ml-4">Sign In with Google</span> */}
                     </button>
                   </div>
 
